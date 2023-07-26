@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEVELOPMENT']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['go-global-011c0a1d1612.herokuapp.com']
 
 
 # Application definition
