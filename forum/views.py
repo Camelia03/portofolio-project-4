@@ -15,5 +15,4 @@ class PostList(generic.ListView):
 
     model = Post
     template_name = "index.html"
-    paginate_by = 6
-    queryset = Post.objects.all()
+    context_object_name = 'post_list'

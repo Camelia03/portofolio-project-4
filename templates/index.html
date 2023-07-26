@@ -4,4 +4,9 @@
 <h2>This is index.html</h2>
 <button type="button" class="btn btn-primary">Primary</button>
 
+<h1>Posts</h1>
+    {% for post in post_list %}
+   Title: {{ post.title }}
+    {% endfor %}
+
 {% endblock%}
