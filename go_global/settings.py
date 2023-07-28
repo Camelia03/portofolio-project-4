@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEVELOPMENT']
 
-ALLOWED_HOSTS = ['go-global-011c0a1d1612.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['go-global-011c0a1d1612.herokuapp.com', 'localhost', '8000-camelia03-portofolio-pro-eyolfa8hwh.us2.codeanyapp.com']
 
 
 # Application definition
