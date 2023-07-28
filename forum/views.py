@@ -19,6 +19,11 @@ class PostList(generic.ListView):
 
 
 def add_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect(index)
 
     form = PostForm()
     context = {
