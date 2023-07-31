@@ -1,12 +1,19 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h2>This is index.html</h2>
-<button type="button" class="btn btn-primary">Primary</button>
-
+{% extends "base.html" %} {% block content %}
 <h1>Posts</h1>
-    {% for post in post_list %}
-   Title: {{ post.title }}
-    {% endfor %}
-
+<form method="POST" action="{% url 'add' %}">
+  {% csrf_token %} {{ form.as_p }}
+  <div>
+    <p>
+      <button type="submit">Add Post</button>
+    </p>
+  </div>
+</form>
+<ul>
+  {% for post in post_list %}
+  <li>
+    <div>Title: {{ post.title }}</div>
+    <div>Created on: {{ post.created_on }}</div>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock%}

@@ -8,14 +8,20 @@ from .forms import PostForm
 
 
 def index(request):
-    return render(request, 'index.html')
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect(index)
+    else:
+        form = PostForm()
 
-
-class PostList(generic.ListView):
-
-    model = Post
-    template_name = "index.html"
-    context_object_name = 'post_list'
+    posts = Post.objects.all()
+    context = {
+        'post_list': posts,
+        'form': form
+    }
+    return render(request, 'index.html', context)
 
 
 def add_post(request):
@@ -30,4 +36,3 @@ def add_post(request):
         'form': form
     }
     return render(request, 'add_post.html', context)
-
