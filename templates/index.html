@@ -1,19 +1,35 @@
-{% extends "base.html" %} {% block content %}
-<h1>Posts</h1>
-<form method="POST" action="{% url 'add' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <div>
-    <p>
-      <button type="submit">Add Post</button>
-    </p>
-  </div>
-</form>
-<ul>
-  {% for post in post_list %}
-  <li>
-    <div>Title: {{ post.title }}</div>
-    <div>Created on: {{ post.created_on }}</div>
-  </li>
-  {% endfor %}
-</ul>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+  <h1>Posts</h1>
+  <form method="POST" action="{% url 'add' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.as_p }}
+    </div>
+    <div>
+      <p>
+        <button type="submit">Add Post</button>
+      </p>
+    </div>
+  </form>
+  <ul class="list-unstyled">
+    {% for post in post_list %}
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'media/goglobal1-logo.png' %}" class="card-img-top" alt="logo">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{post.created_on}}</h6>
+        <p class="card-text">{{ post.content }}</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+
+    {% endfor %}
+  </ul>
+</div>
 {% endblock%}
