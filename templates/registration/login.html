@@ -1,9 +1,24 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
 
-<h2>Login</h2>
+{% block content %}
 
-<form method="POST">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Log In</button>
-</form>
+<style>
+  .btn-turquoise {
+    background-color: #40E0D0;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="mb-4">Login</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-turquoise">Log In</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
