@@ -1,11 +1,11 @@
 {
     "[html]": {
-        "editor.defaultFormatter": "autopep8"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": true,
-    "python.linting.flake8Enabled": false,
+    "python.linting.pycodestyleEnabled": false,
+    "python.linting.flake8Enabled": true,
     "python.terminal.activateEnvironment": false,
     "files.exclude": {
         "**/.DS_Store": true,
@@ -20,11 +20,19 @@
         "**/core.python*": true,
         "**/CVS": true
     },
-    "files.autoSave": "off",
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Dracula",
     "terminal.integrated.gpuAcceleration": "canvas",
-    "editor.formatOnSave": false,
-    "html.format.enable": false,
-    "prettier.enable": false,
-    "editor.defaultFormatter": "autopep8"
+    "editor.formatOnSave": true,
+    "html.format.enable": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "html.format.templating": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "autopep8",
+    "python.analysis.autoImportCompletions": true,
+    "python.globalModuleInstallation": true,
+    "python.analysis.extraPaths": [
+        "/home/codeany/.pyenv"
+    ]
 }
