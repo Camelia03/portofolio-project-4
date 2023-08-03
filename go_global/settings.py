@@ -14,9 +14,16 @@ from pathlib import Path
 
 import os
 import dj_database_url
+import cloudinary
+# Import the cloudinary.api for managing assets
+import cloudinary.api
+# Import the cloudinary.uploader for uploading assets
+import cloudinary.uploader
+
 
 if os.path.isfile("env.py"):
     import env
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,8 +41,18 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ['DEVELOPMENT']
 
 ALLOWED_HOSTS = ['go-global-011c0a1d1612.herokuapp.com', 'localhost',
-                 '127.0.0.1', '8000-camelia03-portofolio-pro-eyolfa8hwh.us2.codeanyapp.com']
+                 '127.0.0.1',
+                 '8000-camelia03-portofolio-pro-eyolfa8hwh.us2.codeanyapp.com']
 
+
+# Configure CLoudinary
+cloudinary.config(
+    cloud_name=os.environ['CLOUDINARY_CLOUD_NAME'],
+    api_key=os.environ['CLOUDINARY_API_KEY'],
+    api_secret=os.environ["CLOUDINARY_API_SECRET"],
+    secure=True,
+
+)
 
 # Application definition
 
@@ -111,16 +128,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 

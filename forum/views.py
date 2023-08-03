@@ -9,9 +9,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required
 def index(request):
+
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
@@ -26,23 +28,6 @@ def index(request):
         'form': form
     }
     return render(request, 'index.html', context)
-
-
-@login_required
-def add_post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-        return redirect('index')
-
-    form = PostForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'add_post.html', context)
 
 
 class PostDetail(View):

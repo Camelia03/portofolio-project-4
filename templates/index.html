@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container py-4">
   <h1>Posts</h1>
-  <form method="POST" action="{% url 'add' %}">
+  <form method="POST" action="{% url 'index' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
       {{ form.as_p }}
@@ -19,13 +19,13 @@
   <ul class="list-unstyled">
     {% for post in post_list %}
     <div class="card" style="width: 18rem;">
-      <img src="{% static 'media/goglobal1-logo.png' %}" class="card-img-top" alt="logo">
+      <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
       <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{post.created_on}}</h6>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{ post.user }}</h6>
         <p class="card-text">{{ post.content }}</p>
-        <a href="{% url 'post_detail' post.id %}" class="card-link">Read more</a>
+        <a href="{% url 'post_detail' post.pk %}" class="card-link">Read more</a>
         <a href="#" class="card-link">Another link</a>
       </div>
     </div>
