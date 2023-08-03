@@ -4,7 +4,7 @@ from django.views import generic, View
 from .forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -16,7 +16,7 @@ def index(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-        return redirect(index)
+        return redirect('index')
     else:
         form = PostForm()
 
@@ -28,6 +28,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def add_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -35,7 +36,7 @@ def add_post(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-        return redirect(index)
+        return redirect('index')
 
     form = PostForm()
     context = {
@@ -46,9 +47,8 @@ def add_post(request):
 
 class PostDetail(View):
 
-    def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
+    def get(self, request, pk, *args, **kwargs):
+        post = get_object_or_404(Post, pk=pk)
         return render(
             request,
             "post_detail.html",
