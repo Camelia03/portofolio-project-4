@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post
+from .models import Post, Like
 from django.views import generic, View
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -73,3 +74,22 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+
+
+@login_required
+def like_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    user = request.user
+
+    # Check if the user has already liked the post
+    user_likes_post = Like.objects.filter(post=post, user=user).exists()
+
+    if user_likes_post:
+        # User has already liked the post, so unlike it
+        like = Like.objects.get(post=post, user=user)
+        like.delete()
+    else:
+        # User hasn't liked the post, so create a new like
+        Like.objects.create(post=post, user=user)
+
+    return redirect('post_detail', pk=pk)
