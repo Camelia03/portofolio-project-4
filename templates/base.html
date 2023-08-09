@@ -10,14 +10,13 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-
   <title>GoGlobal</title>
 
 </head>
 
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-purple">
+  <nav class="navbar navbar-expand-lg bg-purple navbar-dark text-bold">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="{% static 'media/goglobal1-logo.png' %}" alt="GoGlobal's logo" width="100" height="84" />
@@ -29,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -44,21 +43,28 @@
           </li>
           {% endif %}
         </ul>
-        <span class="navbar-text text-turquoise text-bold">
-          Stay connected with GoGlobal
-        </span>
       </div>
     </div>
   </nav>
 
   <div class="container-fluid">
-    {% block content %}
+    <div class="row flex-nowrap">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar content goes here -->
+        sidebar
+      </div>
 
-    {% endblock %}</div>
+      <!-- Main Content -->
+      <main class="flex-fill">
+        <!-- Your existing content goes here -->
+        {% block content %}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
+        {% endblock %}
+      </main>
+    </div>
+
+  </div>
 
   <!-- Footer -->
   <footer class="py-3 my-4 text-bold">
@@ -75,6 +81,13 @@
     </ul>
     <p class="text-center text-turquoise bg-purple text-bold">© 2023 GoGlobal, Inc</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/e9ecd1e8ac.js" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

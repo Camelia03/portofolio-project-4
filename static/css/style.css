@@ -17,6 +17,7 @@ body {
 
 .bg-purple {
     background-color: rgb(113, 77, 230);
+    color: white;
 }
 
 .comment-form {
@@ -69,3 +70,15 @@ cursor: pointer;
 .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.sidebar {
+    min-height: 100vh;
+    border-right: 1px solid #ccc;
+    padding: 15px;
+    width: 250px;
+  }
+  
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px;
+  }
