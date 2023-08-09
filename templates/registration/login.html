@@ -2,15 +2,16 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
 
 <div class="row w-full">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-6 offset-md-3 mt-4">
     <div class="card shadow">
       <div class="card-body">
         <h2 class="mb-4 text-bold">Login</h2>
         <form method="POST">
           {% csrf_token %}
-          {{ form.as_p }}
+          {{ form | crispy }}
           <div class="text-center mt-4">
             <button type="submit" class="btn btn-turquoise btn-lg">Log In</button>
           </div>

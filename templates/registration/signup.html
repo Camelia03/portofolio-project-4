@@ -4,14 +4,16 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="row center-content">
-  <div class="col-md-6">
+  <div class="col-md-6 mt-4">
     <div class="card shadow">
       <div class="card-body">
         <h2 class="card-title mb-4 text-bold">Create an Account</h2>
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
+          {{ form | crispy }}
           <div class="text-center mt-4">
             <button type="submit" class="btn btn-turquoise btn-lg w-100">Sign Up</button>
           </div>
