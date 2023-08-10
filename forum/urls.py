@@ -10,5 +10,6 @@ urlpatterns = [
     path('post/<int:pk>/like', views.like_post, name='like_post'),
     path('user/profile', views.profile, name='user_profile'),
     path('user/posts', views.UserPosts.as_view(), name='user_posts'),
-
+    path('user/posts/delete', views.PostDelete.as_view(),
+         name='post_delete'),
 ]

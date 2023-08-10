@@ -82,3 +82,10 @@ cursor: pointer;
     display: block;
     margin-bottom: 10px;
   }
+
+  .delete-button {
+    background-color: none;
+    border: none;
+    color: var(--bs-danger-border-subtle);
+
+  }

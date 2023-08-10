@@ -5,6 +5,7 @@ from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -107,3 +108,12 @@ class UserPosts(View):
             'post_list': posts
         }
         return render(request, 'user_posts.html', context)
+
+
+class PostDelete(View):
+    def post(self, request):
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, pk=post_id)
+        post.delete()
+        messages.success(request,  'The post has been deleted successfully.')
+        return redirect('user_posts')
