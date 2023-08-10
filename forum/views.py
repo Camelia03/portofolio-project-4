@@ -98,3 +98,12 @@ def like_post(request, pk):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
+class UserPosts(View):
+    def get(self, request):
+        posts = Post.objects.filter(user=request.user)
+        context = {
+            'post_list': posts
+        }
+        return render(request, 'user_posts.html', context)
