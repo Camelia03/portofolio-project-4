@@ -34,3 +34,12 @@ class Like(models.Model):
 
     class Meta:
         unique_together = ('post', 'user')
+
+
+# Extending User Model Using a One-To-One Link
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    about = models.TextField()
+
+    def __str__(self):
+        return self.user.username

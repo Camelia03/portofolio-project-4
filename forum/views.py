@@ -93,3 +93,8 @@ def like_post(request, pk):
         Like.objects.create(post=post, user=user)
 
     return redirect('post_detail', pk=pk)
+
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
