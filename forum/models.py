@@ -40,6 +40,7 @@ class Like(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about = models.TextField()
+    avatar = CloudinaryField('image')
 
     def __str__(self):
         return self.user.username

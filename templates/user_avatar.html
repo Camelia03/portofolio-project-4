@@ -1,0 +1,10 @@
+{% load static %}
+
+<div>
+    {% if not user.profile.avatar %}
+    <img class="rounded-circle avatar-small" src="{% static 'media/avatar_profile.png' %}" alt="avatar">
+    {% else %}
+    <img class="rounded-circle avatar-small" src="{{ user.profile.avatar.url }}" />
+    {% endif %}
+    <span>{{ user.username }}</span>
+</div>

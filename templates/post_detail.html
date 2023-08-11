@@ -13,7 +13,8 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h1 class="card-title">{{ post.title }}</h1>
-                    <p class="card-text"><em>{{ post.created_on }}</em> by <strong>{{ post.user.username }}</strong></p>
+                    <p class="card-text"><em>{{ post.created_on }}</em> by
+                        <strong>{% include 'user_avatar.html' with user=post.user %}</strong></p>
                     <img src="{{ post.image.url }}" class="img-fluid mb-3" alt="{{ post.title }}">
                     <p class="card-text">{{ post.content }}</p>
                 </div>
@@ -26,7 +27,7 @@
 <div class="d-flex justify-content-center mb-3 center-content">
     <form method="post" action="{% url 'like_post' post.pk %}">
         {% csrf_token %}
-        <button type="submit" class="btn bg-purple">
+        <button type="submit" class="btn bg-blue">
             {% if user_likes_post %}
             <i class="fa-solid fa-heart-crack fa-spin"></i> Unlike {{ post.likes.count }}
             {% else %}
@@ -45,7 +46,7 @@
             <form method="post" style="margin-top: 1.3em;">
                 {% csrf_token %}
                 {{ comment_form | crispy }}
-                <button type="submit" class="btn btn-signup btn-lg bg-purple">Submit</button>
+                <button type="submit" class="btn btn-signup btn-lg bg-blue">Submit</button>
             </form>
 
             {% for comment in post.comments.all %}

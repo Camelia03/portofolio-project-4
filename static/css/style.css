@@ -3,20 +3,21 @@ body {
     color: black;
 }
 
-.text-turquoise {
-    color: turquoise;
+.text-blue {
+    color: #4c86a8;
 }
 
 .text-bold {
     font-weight: bold;
 }
 
-.btn-turquoise {
-    background-color: #40E0D0;
+.btn-blue {
+    background-color: #004696;
+    color: #fff;
   }
 
-.bg-purple {
-    background-color: rgb(113, 77, 230);
+.bg-blue {
+    background-color: #120460;
     color: white;
 }
 
@@ -88,4 +89,13 @@ cursor: pointer;
     border: none;
     color: var(--bs-danger-border-subtle);
 
+  }
+
+  .avatar-big {
+    max-width: 180px;
+
+  }
+
+  .avatar-small {
+    max-width: 80px;
   }
