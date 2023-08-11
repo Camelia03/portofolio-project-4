@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like
 from django.views import generic, View
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -72,7 +73,7 @@ class PostAdd(View):
 
 
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
@@ -99,6 +100,32 @@ def like_post(request, pk):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
+@method_decorator(login_required, name='dispatch')
+class EditProfile(View):
+    def get(self, request):
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return render(request, 'edit_profile.html', context)
+
+    def post(self, request):
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile was updated successfully.')
+            return redirect('user_profile')
+
+        else:
+            redirect('edit_profile')
 
 
 class UserPosts(View):

@@ -1,15 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
+
+{% load static %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="container-fluid p-0 mt-3">
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
 <div class="row my-3 p-3">
     <div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-body text-center">
                 <h1 class="card-title">Welcome, {{ user.username }}!</h1>
                 <p class="card-text text-muted">This is your profile page on GoGlobal.</p>
+                {% if not user.profile.avatar %}
+                <img class="rounded-circle avatar-big" src="{% static 'media/avatar_profile.png' %}" alt="avatar">
+                {% else %}
+                <img class="rounded-circle avatar-big" src="{{ user.profile.avatar.url }}" />
+                {% endif %}
+                <p>Email address: {{ user.email }}</p>
+                <p><strong>About me:</strong> {{ user.profile.about }}</p>
+
             </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
