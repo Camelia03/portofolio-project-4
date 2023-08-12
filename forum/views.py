@@ -137,6 +137,16 @@ class UserPosts(View):
         return render(request, 'user_posts.html', context)
 
 
+class PostEdit(generic.edit.UpdateView):
+    model = Post
+    fields = ["title", "content", "image"]
+    template_name = "post_edit.html"
+
+    def get_success_url(self):
+        # Customize the redirect URL
+        return reverse_lazy('post_detail', kwargs={'pk': self.object.pk})
+
+
 class PostDelete(View):
     def post(self, request):
         post_id = request.POST.get('post_id')

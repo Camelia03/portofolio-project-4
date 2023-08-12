@@ -1,7 +1,7 @@
 {% load static %}
 
-<div class="row align-items-center flex-nowrap">
-    <div class="col ratio ratio-1x1 avatar-wrapper">
+<div class="d-flex align-items-center flex-nowrap">
+    <div class="col ratio ratio-1x1 avatar-wrapper flex-grow-0">
         {% if not user.profile.avatar %}
         <div class="rounded-circle avatar-small"
             style="background-image: url({% static 'media/avatar_profile.png' %});"> </div>

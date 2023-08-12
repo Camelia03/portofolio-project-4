@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h1 class="card-title">{{ post.title }}</h1>
                     <p class="card-text"><em>{{ post.created_on }}</em> by
-                        <strong>{% include 'user_avatar.html' with user=post.user %}</strong></p>
+                        {% include 'user_avatar.html' with user=post.user %}</p>
                     <img src="{{ post.image.url }}" class="img-fluid mb-3" alt="{{ post.title }}">
                     <p class="card-text">{{ post.content }}</p>
                 </div>

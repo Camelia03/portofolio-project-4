@@ -102,7 +102,6 @@ body {
 
 .avatar-wrapper {
     display: inline-block;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
-    align-items: center;
 }
