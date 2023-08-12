@@ -1,10 +1,13 @@
 {% load static %}
 
-<div>
-    {% if not user.profile.avatar %}
-    <img class="rounded-circle avatar-small" src="{% static 'media/avatar_profile.png' %}" alt="avatar">
-    {% else %}
-    <img class="rounded-circle avatar-small" src="{{ user.profile.avatar.url }}" />
-    {% endif %}
-    <span>{{ user.username }}</span>
+<div class="row align-items-center flex-nowrap">
+    <div class="col ratio ratio-1x1 avatar-wrapper">
+        {% if not user.profile.avatar %}
+        <div class="rounded-circle avatar-small"
+            style="background-image: url({% static 'media/avatar_profile.png' %});"> </div>
+        {% else %}
+        <div class="rounded-circle avatar-small" style="background-image: url({{ user.profile.avatar.url }});"></div>
+        {% endif %}
+    </div>
+    <div class="col">{{ user.username }}</div>
 </div>
