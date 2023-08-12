@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like
 from django.views import generic, View
@@ -7,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 
 
 # Create your views here.
@@ -154,3 +157,27 @@ class PostDelete(View):
         post.delete()
         messages.success(request,  'The post has been deleted successfully.')
         return redirect('user_posts')
+
+
+class PostSearch(generic.list.ListView):
+    model = Post
+    paginate_by = 5
+    template_name = 'search.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        keyword = self.request.GET.get('keyword')
+
+        # Search for posts that contain the keyword in the title OR in the content
+        query = Q(title__icontains=keyword) | Q(content__icontains=keyword)
+
+        return Post.objects.filter(query)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Adding a custom value to the context
+        keyword = self.request.GET.get('keyword')
+        context['keyword'] = keyword
+
+        return context
