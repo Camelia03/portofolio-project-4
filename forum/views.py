@@ -161,8 +161,8 @@ class PostDelete(View):
 
 class PostSearch(generic.list.ListView):
     model = Post
-    paginate_by = 5
     template_name = 'search.html'
+    paginate_by = 2
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -171,7 +171,7 @@ class PostSearch(generic.list.ListView):
         # Search for posts that contain the keyword in the title OR in the content
         query = Q(title__icontains=keyword) | Q(content__icontains=keyword)
 
-        return Post.objects.filter(query)
+        return Post.objects.filter(query).order_by('title')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
