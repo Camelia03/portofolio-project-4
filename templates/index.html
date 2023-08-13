@@ -24,9 +24,10 @@
           <a href="{% url 'post_detail' post.pk %}" class="card-link">Read more</a>
 
           <!-- Count of comments and likes -->
-          <p class="mt-2"><i class="fa-regular fa-comments"></i> {{ post.comments.count }} <i
-              class="fa-regular fa-heart"></i>
-            {{ post.likes.count }}</p>
+          <p class="mt-2">
+            <i class="fa-regular fa-comments"></i> {{ post.comments.count }}
+            <i class="fa-regular fa-heart"></i> {{ post.likes.count }}
+          </p>
         </div>
       </div>
     </div>

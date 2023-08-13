@@ -28,13 +28,17 @@ class PostDetail(View):
     def get(self, request, pk, *args, **kwargs):
         post = get_object_or_404(Post, pk=pk)
         comments = post.comments.all()
+        user_likes = Like.objects.filter(user=request.user, post=post)
+        user_likes_post = user_likes.count() != 0
+
         return render(
             request,
             "post_detail.html",
             {
                 "post": post,
                 "comments": comments,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                'user_likes_post': user_likes_post
             },
         )
 

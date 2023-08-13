@@ -8,42 +8,48 @@
 <div class="container mt-5">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h1 class="card-title">{{ post.title }}</h1>
-                    <p class="card-text"><em>{{ post.created_on }}</em> by
-                        {% include 'user_avatar.html' with user=post.user %}</p>
-                    <img src="{{ post.image.url }}" class="img-fluid mb-3" alt="{{ post.title }}">
-                    <p class="card-text">{{ post.content }}</p>
-                </div>
-                <!-- Edit post button -->
-                {% if user.id == post.user.id %}
-                <a href="{% url 'post_edit' post.pk %}" class="card-link">Edit post</a>
-
-                {% endif %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            <p class="card-text"><em>{{ post.created_on }}</em> by
+                {% include 'user_avatar.html' with user=post.user %}</p>
+            <div class="text-center">
+                <img src="{{ post.image.url }}" class="img-fluid mb-3" alt="{{ post.title }}">
             </div>
+            <p class="card-text">{{ post.content }}</p>
+            <div class="mt-2">
+
+                <!-- Count of comments and likes -->
+                <div class="d-flex align-items-center mb-3">
+                    <div class="mt-2">
+                        <i class="fa-regular fa-comments"></i> {{ post.comments.count }}
+                        <i class="fa-regular fa-heart"></i> {{ post.likes.count }}
+                    </div>
+                </div>
+
+                <!-- Like Button -->
+                <form method="post" action="{% url 'like_post' post.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn bg-blue">
+                        {% if user_likes_post %}
+                        <i class="fa-solid fa-heart-crack fa-spin"></i> Unlike
+                        {% else %}
+                        <i class="fa-sharp fa-solid fa-heart fa-bounce"></i> Like
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+
         </div>
+        <!-- Edit post button -->
+        {% if user.id == post.user.id %}
+        <a href="{% url 'post_edit' post.pk %}" class="card-link">Edit post</a>
+
+        {% endif %}
     </div>
 </div>
 
 
-
-
-<!-- Likes Section -->
-<div class="d-flex justify-content-center mb-3 center-content">
-    <form method="post" action="{% url 'like_post' post.pk %}">
-        {% csrf_token %}
-        <button type="submit" class="btn bg-blue">
-            {% if user_likes_post %}
-            <i class="fa-solid fa-heart-crack fa-spin"></i> Unlike {{ post.likes.count }}
-            {% else %}
-            <i class="fa-sharp fa-solid fa-heart fa-bounce"></i> Like {{ post.likes.count }}
-            {% endif %}
-        </button>
-    </form>
-</div>
 <!-- Comments Section -->
 <div class="container mt-5">
     <div class="row">
@@ -51,7 +57,7 @@
             <h3>Leave a comment:</h3>
             <p>Posting as: <strong> {{ user.username }} </strong></p>
 
-            <form method="post" style="margin-top: 1.3em;">
+            <form method="post" class="mt-2">
                 {% csrf_token %}
                 {{ comment_form | crispy }}
                 <button type="submit" class="btn btn-signup btn-lg bg-blue">Submit</button>
