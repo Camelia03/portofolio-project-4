@@ -15,14 +15,12 @@ from django.db.models import Q
 # Create your views here.
 
 
-@login_required
-def index(request):
-
-    posts = Post.objects.all()
-    context = {
-        'post_list': posts
-    }
-    return render(request, 'index.html', context)
+@method_decorator(login_required, name='dispatch')
+class Index(generic.list.ListView):
+    model = Post
+    template_name = 'index.html'
+    paginate_by = 2
+    context_object_name = 'post_list'
 
 
 class PostDetail(View):
