@@ -11,14 +11,29 @@ body {
     font-weight: bold;
 }
 
-.btn-blue {
+.forum-btn-primary {
     background-color: #004696;
+    color: #fff;
+}
+
+.forum-btn-primary:hover {
+    background-color: rgb(0, 93, 199);
     color: #fff;
 }
 
 .bg-blue {
     background-color: #120460;
     color: white;
+}
+
+.forum-btn-secondary {
+    background-color: #fff;
+    color: #004696;
+    border: 1px solid #004696;
+}
+
+.forum-btn-secondary:hover {
+    border: 1px solid #004696;
 }
 
 .comment-form {

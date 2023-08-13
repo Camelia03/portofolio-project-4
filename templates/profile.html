@@ -29,7 +29,7 @@
                 {% endif %}
                 <p>Email address: {{ user.email }}</p>
                 <p><strong>About me:</strong> {{ user.profile.about }}</p>
-
+                <a href="{% url 'edit_profile' %}">Edit Profile</a>
             </div>
         </div>
     </div>

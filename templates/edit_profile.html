@@ -8,7 +8,8 @@
     {% csrf_token %}
     {{ user_form | crispy }}
     {{ profile_form | crispy }}
-    <button type="submit" class="btn btn-blue text-bold btn-md">Save Changes</button>
+    <button type="submit" class="btn forum-btn-primary text-bold btn-md">Save Changes</button>
+    <a href="{% url 'user_profile' %}"><button class="btn forum-btn-secondary text-bold">Cancel</button></a>
 
 </form>
 
