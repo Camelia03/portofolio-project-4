@@ -5,7 +5,7 @@
 {% block content %}
 <div>
     <h1>My Posts</h1>
-    {% include 'app_message.html' with messages=messages %}
+    {% include 'snippets/app_message.html' with messages=messages %}
 
     <div class="py-4">
         {% for post in post_list %}

@@ -12,7 +12,7 @@
         <div class="card-body">
             <h1 class="card-title">{{ post.title }}</h1>
             <p class="card-text"><em>{{ post.created_on }}</em> by
-                {% include 'user_avatar.html' with user=post.user %}</p>
+                {% include 'snippets/user_avatar.html' with user=post.user %}</p>
             <div class="text-center">
                 <img src="{{ post.image.url }}" class="img-fluid mb-3" alt="{{ post.title }}">
             </div>
