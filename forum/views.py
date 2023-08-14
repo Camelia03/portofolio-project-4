@@ -1,15 +1,15 @@
-from typing import Any
-from django.db.models.query import QuerySet
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like
 from django.views import generic, View
 from .forms import PostForm, CommentForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
@@ -77,10 +77,11 @@ class PostAdd(View):
         return redirect('index')
 
 
-class SignUpView(generic.CreateView):
+class SignUpView(SuccessMessageMixin, generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+    success_message = "You've registered successfully!"
 
 
 @login_required
