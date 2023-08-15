@@ -9,3 +9,4 @@ node_modules/
 cloudinary_python.txt
 # Folder that contains test emails
 sent_emails
+db.sqlite3
