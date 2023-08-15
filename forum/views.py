@@ -1,9 +1,6 @@
-from typing import Optional
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Thread, Upvote
-from django.views import generic, View
+from django.views import View
 from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -13,13 +10,15 @@ from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
 
 
 # Create your views here.
 
 
 @method_decorator(login_required, name='dispatch')
-class Index(generic.list.ListView):
+class Index(ListView):
     model = Thread
     template_name = 'index.html'
     paginate_by = 2
@@ -82,7 +81,7 @@ class ThreadAdd(View):
         return redirect('index')
 
 
-class SignUpView(SuccessMessageMixin, generic.CreateView):
+class SignUpView(SuccessMessageMixin, CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
@@ -151,7 +150,7 @@ class UserThreads(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class ThreadEdit(UserPassesTestMixin, generic.edit.UpdateView):
+class ThreadEdit(UserPassesTestMixin, UpdateView):
     model = Thread
     fields = ["title", "content", "image"]
     template_name = "thread_edit.html"
@@ -181,7 +180,7 @@ class ThreadDelete(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class ThreadSearch(generic.list.ListView):
+class ThreadSearch(ListView):
     model = Thread
     template_name = 'search.html'
     paginate_by = 2
@@ -190,7 +189,8 @@ class ThreadSearch(generic.list.ListView):
     def get_queryset(self):
         keyword = self.request.GET.get('keyword')
 
-        # Search for threads that contain the keyword in the title OR in the content
+        # Search for threads that contain the keyword
+        # in the title OR in the content
         query = Q(title__icontains=keyword) | Q(content__icontains=keyword)
 
         return Thread.objects.filter(query).order_by('title')
