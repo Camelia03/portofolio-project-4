@@ -1,3 +1,4 @@
+from typing import Optional
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -10,6 +11,8 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 
 
 # Create your views here.
@@ -23,6 +26,7 @@ class Index(generic.list.ListView):
     context_object_name = 'post_list'
 
 
+@method_decorator(login_required, name='dispatch')
 class PostDetail(View):
 
     def get(self, request, pk, *args, **kwargs):
@@ -54,6 +58,7 @@ class PostDetail(View):
         return redirect('post_detail', pk=pk)
 
 
+@method_decorator(login_required, name='dispatch')
 class PostAdd(View):
     def get(self, request):
         form = PostForm()
@@ -134,6 +139,7 @@ class EditProfile(View):
             redirect('edit_profile')
 
 
+@method_decorator(login_required, name='dispatch')
 class UserPosts(View):
     def get(self, request):
         posts = Post.objects.filter(user=request.user)
@@ -143,25 +149,37 @@ class UserPosts(View):
         return render(request, 'user_posts.html', context)
 
 
-class PostEdit(generic.edit.UpdateView):
+@method_decorator(login_required, name='dispatch')
+class PostEdit(UserPassesTestMixin, generic.edit.UpdateView):
     model = Post
     fields = ["title", "content", "image"]
     template_name = "post_edit.html"
+
+    # Check if the logged in user owns the post
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user.id == post.user.id
 
     def get_success_url(self):
         # Customize the redirect URL
         return reverse_lazy('post_detail', kwargs={'pk': self.object.pk})
 
 
+@method_decorator(login_required, name='dispatch')
 class PostDelete(View):
+
     def post(self, request):
         post_id = request.POST.get('post_id')
         post = get_object_or_404(Post, pk=post_id)
-        post.delete()
+        if request.user.id == post.user.id:
+            post.delete()
+        else:
+            raise PermissionDenied()
         messages.success(request,  'The post has been deleted successfully.')
         return redirect('user_posts')
 
 
+@method_decorator(login_required, name='dispatch')
 class PostSearch(generic.list.ListView):
     model = Post
     template_name = 'search.html'
