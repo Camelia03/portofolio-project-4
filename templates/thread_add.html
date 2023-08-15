@@ -6,6 +6,7 @@
 
 {% load crispy_forms_tags %}
 
+<h1>Add a new thread</h1>
 <form method="POST" action="{% url 'thread_add' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
