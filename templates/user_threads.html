@@ -30,6 +30,9 @@
             </div>
         </div>
 
+        {% empty %}
+        <p>You don't have any threads. Go <a href="{% url 'thread_add' %}">here</a> to create a thread.</p>
+
         {% endfor %}
         <!-- Modal -->
         <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel"
