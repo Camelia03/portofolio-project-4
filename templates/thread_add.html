@@ -6,14 +6,14 @@
 
 {% load crispy_forms_tags %}
 
-<form method="POST" action="{% url 'post_add' %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'thread_add' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
         {{ form | crispy }}
     </div>
     <div>
         <p>
-            <button type="submit" class="btn forum-btn-primary text-bold btn-md">Add Post</button>
+            <button type="submit" class="btn forum-btn-primary text-bold btn-md">Add Thread</button>
         </p>
     </div>
 </form>

@@ -2,9 +2,9 @@ from typing import Optional
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Like
+from .models import Thread, Upvote
 from django.views import generic, View
-from .forms import PostForm, CommentForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
+from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -20,48 +20,48 @@ from django.core.exceptions import PermissionDenied
 
 @method_decorator(login_required, name='dispatch')
 class Index(generic.list.ListView):
-    model = Post
+    model = Thread
     template_name = 'index.html'
     paginate_by = 2
-    context_object_name = 'post_list'
+    context_object_name = 'thread_list'
 
 
 @method_decorator(login_required, name='dispatch')
-class PostDetail(View):
+class ThreadDetail(View):
 
     def get(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)
-        comments = post.comments.all()
-        user_likes = Like.objects.filter(user=request.user, post=post)
-        user_likes_post = user_likes.count() != 0
+        thread = get_object_or_404(Thread, pk=pk)
+        replies = thread.replies.all()
+        user_upvotes = Upvote.objects.filter(user=request.user, thread=thread)
+        user_upvotes_thread = user_upvotes.count() != 0
 
         return render(
             request,
-            "post_detail.html",
+            "thread_detail.html",
             {
-                "post": post,
-                "comments": comments,
-                "comment_form": CommentForm(),
-                'user_likes_post': user_likes_post
+                "thread": thread,
+                "replies": replies,
+                "reply_form": ReplyForm(),
+                'user_upvotes_thread': user_upvotes_thread
             },
         )
 
     def post(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)
+        thread = get_object_or_404(Thread, pk=pk)
 
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.user = request.user
-            comment.save()
-        return redirect('post_detail', pk=pk)
+        reply_form = ReplyForm(request.POST)
+        if reply_form.is_valid():
+            reply = reply_form.save(commit=False)
+            reply.thread = thread
+            reply.user = request.user
+            reply.save()
+        return redirect('thread_detail', pk=pk)
 
 
 @method_decorator(login_required, name='dispatch')
-class PostAdd(View):
+class ThreadAdd(View):
     def get(self, request):
-        form = PostForm()
+        form = ThreadForm()
 
         context = {
             "form": form,
@@ -69,16 +69,16 @@ class PostAdd(View):
 
         return render(
             request,
-            "post_add.html",
+            "thread_add.html",
             context
         )
 
     def post(self, request):
-        form = PostForm(request.POST, request.FILES)
+        form = ThreadForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
+            thread = form.save(commit=False)
+            thread.user = request.user
+            thread.save()
         return redirect('index')
 
 
@@ -90,22 +90,23 @@ class SignUpView(SuccessMessageMixin, generic.CreateView):
 
 
 @login_required
-def like_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def upvote_thread(request, pk):
+    thread = get_object_or_404(Thread, pk=pk)
     user = request.user
 
-    # Check if the user has already liked the post
-    user_likes_post = Like.objects.filter(post=post, user=user).exists()
+    # Check if the user has already upvoted the thread
+    user_upvotes_thread = Upvote.objects.filter(
+        thread=thread, user=user).exists()
 
-    if user_likes_post:
-        # User has already liked the post, so unlike it
-        like = Like.objects.get(post=post, user=user)
-        like.delete()
+    if user_upvotes_thread:
+        # User has already upvoted the thread, so upvote it
+        upvote = Upvote.objects.get(thread=thread, user=user)
+        upvote.delete()
     else:
-        # User hasn't liked the post, so create a new like
-        Like.objects.create(post=post, user=user)
+        # User hasn't upvoted the thread, so create a new upvote
+        Upvote.objects.create(thread=thread, user=user)
 
-    return redirect('post_detail', pk=pk)
+    return redirect('thread_detail', pk=pk)
 
 
 @login_required
@@ -140,59 +141,59 @@ class EditProfile(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class UserPosts(View):
+class UserThreads(View):
     def get(self, request):
-        posts = Post.objects.filter(user=request.user)
+        threads = Thread.objects.filter(user=request.user)
         context = {
-            'post_list': posts
+            'thread_list': threads
         }
-        return render(request, 'user_posts.html', context)
+        return render(request, 'user_threads.html', context)
 
 
 @method_decorator(login_required, name='dispatch')
-class PostEdit(UserPassesTestMixin, generic.edit.UpdateView):
-    model = Post
+class ThreadEdit(UserPassesTestMixin, generic.edit.UpdateView):
+    model = Thread
     fields = ["title", "content", "image"]
-    template_name = "post_edit.html"
+    template_name = "thread_edit.html"
 
-    # Check if the logged in user owns the post
+    # Check if the logged in user owns the thread
     def test_func(self):
-        post = self.get_object()
-        return self.request.user.id == post.user.id
+        thread = self.get_object()
+        return self.request.user.id == thread.user.id
 
     def get_success_url(self):
         # Customize the redirect URL
-        return reverse_lazy('post_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('thread_detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(login_required, name='dispatch')
-class PostDelete(View):
+class ThreadDelete(View):
 
     def post(self, request):
-        post_id = request.POST.get('post_id')
-        post = get_object_or_404(Post, pk=post_id)
-        if request.user.id == post.user.id:
-            post.delete()
+        thread_id = request.POST.get('thread_id')
+        thread = get_object_or_404(Thread, pk=thread_id)
+        if request.user.id == thread.user.id:
+            thread.delete()
         else:
             raise PermissionDenied()
-        messages.success(request,  'The post has been deleted successfully.')
-        return redirect('user_posts')
+        messages.success(request,  'The thread has been deleted successfully.')
+        return redirect('user_threads')
 
 
 @method_decorator(login_required, name='dispatch')
-class PostSearch(generic.list.ListView):
-    model = Post
+class ThreadSearch(generic.list.ListView):
+    model = Thread
     template_name = 'search.html'
     paginate_by = 2
-    context_object_name = 'posts'
+    context_object_name = 'threads'
 
     def get_queryset(self):
         keyword = self.request.GET.get('keyword')
 
-        # Search for posts that contain the keyword in the title OR in the content
+        # Search for threads that contain the keyword in the title OR in the content
         query = Q(title__icontains=keyword) | Q(content__icontains=keyword)
 
-        return Post.objects.filter(query).order_by('title')
+        return Thread.objects.filter(query).order_by('title')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

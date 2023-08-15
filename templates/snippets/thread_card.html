@@ -1,0 +1,23 @@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ thread.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{thread.created_on}}</h6>
+                <h6 class="card-subtitle mb-2 text-body-secondary">
+                    {% include 'snippets/user_avatar.html' with user=thread.user %}</h6>
+                <p class="card-text">{{ thread.content|truncatewords:10 }}</p>
+                <a href="{% url 'thread_detail' thread.pk %}" class="card-link">Read more</a>
+
+                <!-- Count of replies and Upvotes -->
+                <p class="mt-2">
+                    <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
+                    <i class="fa-regular fa-heart"></i> {{ thread.upvotes.count }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

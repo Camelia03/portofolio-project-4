@@ -41,7 +41,7 @@
         </ul>
 
         <!-- Search Button -->
-        <form class="d-flex" role="search" method="GET" action="{% url 'post_search' %}">
+        <form class="d-flex" role="search" method="GET" action="{% url 'thread_search' %}">
           <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search" name="keyword"
             id="keyword">
           <button type="submit" class="btn forum-btn-primary text-bold btn-md">Search</button>
@@ -60,7 +60,7 @@
             </div>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="{% url 'user_profile' %}">My Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'user_posts' %}">My Posts</a></li>
+              <li><a class="dropdown-item" href="{% url 'user_threads' %}">My Threads</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>

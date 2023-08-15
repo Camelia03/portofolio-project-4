@@ -6,9 +6,9 @@
 
 <p>{{ paginator.count }} Results with the keyword: {{keyword}}</p>
 
-{% for post in posts %}
+{% for thread in threads %}
 
-{% include 'snippets/post_card.html' with post=post %}
+{% include 'snippets/thread_card.html' with thread=thread %}
 
 {% endfor %}
 

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mt-5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h1 class="card-title">{{ thread.title }}</h1>
+            <p class="card-text"><em>{{ thread.created_on }}</em> by
+                {% include 'snippets/user_avatar.html' with user=thread.user %}</p>
+            <div class="text-center">
+                <img src="{{ thread.image.url }}" class="img-fluid mb-3" alt="{{ thread.title }}">
+            </div>
+            <p class="card-text">{{ thread.content }}</p>
+            <div class="mt-2">
+
+                <!-- Count of replies and Upvotes -->
+                <div class="d-flex align-items-center mb-3">
+                    <div class="mt-2">
+                        <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
+                        <i class="fa-regular fa-heart"></i> {{ thread.upvotes.count }}
+                    </div>
+                </div>
+
+                <!-- Upvote Button -->
+                <form method="post" action="{% url 'upvote_thread' thread.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn bg-blue">
+                        {% if user_upvotes_thread %}
+                        <i class="fa-solid fa-heart-crack fa-spin"></i> Downvote
+                        {% else %}
+                        <i class="fa-sharp fa-solid fa-heart fa-bounce"></i> Upvote
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        <!-- Edit thread button -->
+        {% if user.id == thread.user.id %}
+        <a href="{% url 'thread_edit' thread.pk %}" class="card-link">Edit thread</a>
+
+        {% endif %}
+    </div>
+</div>
+
+
+<!-- Replies Section -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Leave a reply:</h3>
+            <p>Posting as: <strong> {{ user.username }} </strong></p>
+
+            <form method="post" class="mt-2">
+                {% csrf_token %}
+                {{ reply_form | crispy }}
+                <button type="submit" class="btn btn-signup btn-lg bg-blue">Submit</button>
+            </form>
+
+            {% for reply in thread.replies.all %}
+            <div class="card">
+                <div class="card-body"> On
+                    <span class=" text-muted font-weight-normal">
+                        <em>{{ reply.created_on }}</em></span> |
+                    {{ reply.user.username }} wrote:
+
+                    <p class="card-text">{{ reply.content }}</p>
+
+                </div>
+            </div>
+            {% empty %}
+            <p>No replies yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block content %}
-<h1>Posts</h1>
-<a href="{% url 'post_add' %}"><button type="button" class="btn bg-blue">Add a post</button></a>
+<h1>Threads</h1>
+<a href="{% url 'thread_add' %}"><button type="button" class="btn bg-blue">Add a thread</button></a>
 
 <div class="py-4">
-  {% for post in post_list %}
+  {% for thread in thread_list %}
 
-  {% include 'snippets/post_card.html' with post=post %}
+  {% include 'snippets/thread_card.html' with thread=thread %}
 
   {% endfor %}
   <!-- Pagination -->

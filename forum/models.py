@@ -5,7 +5,7 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
-class Post(models.Model):
+class Thread(models.Model):
 
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -17,23 +17,23 @@ class Post(models.Model):
         return self.title
 
 
-class Comment(models.Model):
+class Reply(models.Model):
 
-    post = models.ForeignKey(
-        Post, related_name='comments', on_delete=models.CASCADE)
+    thread = models.ForeignKey(
+        Thread, related_name='replies', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
 
-class Like(models.Model):
-    post = models.ForeignKey(Post, related_name='likes',
-                             on_delete=models.CASCADE)
+class Upvote(models.Model):
+    thread = models.ForeignKey(Thread, related_name='upvotes',
+                               on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('post', 'user')
+        unique_together = ('thread', 'user')
 
 
 # Extending User Model Using a One-To-One Link

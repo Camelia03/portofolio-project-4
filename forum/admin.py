@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Post, Profile
+from .models import Thread, Profile
 
 # Register your models here.
 
-admin.site.register(Post)
+admin.site.register(Thread)
 admin.site.register(Profile)
