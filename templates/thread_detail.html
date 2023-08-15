@@ -11,8 +11,16 @@
     <div class="card mb-3">
         <div class="card-body">
             <h1 class="card-title">{{ thread.title }}</h1>
-            <p class="card-text"><em>{{ thread.created_on }}</em> by
-                {% include 'snippets/user_avatar.html' with user=thread.user %}</p>
+            <h6 class="card-subtitle mb-2 text-body-secondary">
+                <em>Created on: {{thread.created_on}} | Edited
+                    on: {{ thread.edited_on }}</em>
+            </h6>
+
+            <div class="d-flex align-items-center">
+                <div class="me-2">Author: </div>
+                {% include 'snippets/user_avatar.html' with user=thread.user %}
+            </div>
+
             <div class="text-center">
                 <img src="{{ thread.image.url }}" class="img-fluid mb-3" alt="{{ thread.title }}">
             </div>
