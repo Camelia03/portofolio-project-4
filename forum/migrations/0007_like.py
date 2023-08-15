@@ -14,13 +14,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Upvote',
+            name='Like',
             fields=[
                 ('id', models.BigAutoField(auto_created=True,
                  primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
                 ('post', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE, related_name='upvotes', to='forum.post')),
+                    on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='forum.post')),
                 ('user', models.ForeignKey(
                     on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
