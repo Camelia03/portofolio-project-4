@@ -3,8 +3,22 @@
 {% load static %}
 
 {% block content %}
-<h1>Threads</h1>
+<div class="d-flex justify-content-between mt-2">
+  <h1>Threads</h1>
+
+  <!-- Order by dropdown, the correct option is selected depending on the order by param -->
+  <div>
+    <select id="order-by-select" class="form-select" aria-label="Default select example">
+      <option value="-created_on" {% if order_by == "-created_on" %}selected{% endif %}>Newest first</option>
+      <option value="created_on" {% if order_by == "created_on" %}selected{% endif %}>Oldest first</option>
+      <option value="title" {% if order_by == "title" %}selected{% endif %}>Title</option>
+      <option value="popular" {% if order_by == "popular" %}selected{% endif %}>Most popular</option>
+    </select>
+  </div>
+</div>
 <a href="{% url 'thread_add' %}"><button type="button" class="btn bg-blue">Add a thread</button></a>
+
+
 
 <div class="py-4">
   {% for thread in thread_list %}
@@ -12,17 +26,19 @@
   {% include 'snippets/thread_card.html' with thread=thread %}
 
   {% endfor %}
+
   <!-- Pagination -->
   <div class="pagination justify-content-center">
     <ul class="pagination">
       {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page=1" aria-label="First">
+        <a class="page-link" href="?order_by={{ order_by }}&page=1" aria-label="First">
           <span aria-hidden="true">&laquo;&laquo;</span>
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.previous_page_number }}"
+          aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -34,12 +50,12 @@
 
       {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.next_page_number }}" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="?page={{ paginator.num_pages }}" aria-label="Last">
+        <a class="page-link" href="?order_by={{ order_by }}&page={{ paginator.num_pages }}" aria-label="Last">
           <span aria-hidden="true">&raquo;&raquo;</span>
         </a>
       </li>
@@ -48,3 +64,8 @@
   </div>
 </div>
 {% endblock%}
+
+{% block javascript %}
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}

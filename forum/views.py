@@ -1,3 +1,5 @@
+from typing import Any, Dict
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Thread, Upvote
 from django.views import View
@@ -6,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.decorators import method_decorator
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
@@ -23,6 +25,22 @@ class Index(ListView):
     template_name = 'index.html'
     paginate_by = 2
     context_object_name = 'thread_list'
+
+    def get_queryset(self):
+        order_by = self.request.GET.get('order_by') or '-created_on'
+
+        if order_by == 'popular':
+            return Thread.objects.annotate(
+                num_upvotes=Count("upvotes")).order_by('-num_upvotes')
+
+        return Thread.objects.all().order_by(order_by)
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+
+        context['order_by'] = self.request.GET.get('order_by') or '-created_on'
+
+        return context
 
 
 @method_decorator(login_required, name='dispatch')
