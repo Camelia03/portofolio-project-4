@@ -11,7 +11,7 @@ class Thread(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', null=True, blank=True)
     edited_on = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
