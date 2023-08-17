@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Profile of {{ public_user.username }}{% endblock title %}
+{% block content %}
+
+{% load static %}
+
+<!-- User's Profile -->
+<div class="row my-3 p-3">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title">{{ public_user.username }}'s profile</h1>
+                {% if not public_user.profile.avatar %}
+                <img class="rounded-circle avatar-big" src="{% static 'media/avatar_profile.png' %}" alt="avatar">
+                {% else %}
+                <img class="rounded-circle avatar-big" src="{{ public_user.profile.avatar.url }}" />
+                {% endif %}
+                <p>Email address: {{ public_user.email }}</p>
+                <p><strong>About me:</strong> {{ public_user.profile.about }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User's Threads -->
+<h2>{{ public_user.username }}'s Threads</h2>
+{% for thread in public_user.threads.all %}
+
+{% include 'snippets/thread_card.html' with thread=thread %}
+
+{% empty %}
+<p>{{ public_user.username }} does not have any threads.</p>
+{% endfor %}
+
+{% endblock %}

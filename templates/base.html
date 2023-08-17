@@ -53,7 +53,7 @@
             <div class="nav-link" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="row flex-nowrap align-items-center">
                 <div class="col">
-                  {% include 'snippets/user_avatar.html' with user=user %}
+                  {% include 'snippets/user_avatar.html' with user=user hide_profile_link=True %}
                 </div>
                 <div class="col"><i class="fa-solid fa-caret-down"></i></div>
               </div>

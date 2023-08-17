@@ -14,6 +14,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -163,6 +164,12 @@ def downvote_thread(request, pk):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
+@login_required
+def view_profile(request, username):
+    profile_user = get_object_or_404(User, username=username)
+    return render(request, 'public_profile.html', {'public_user': profile_user})
 
 
 @method_decorator(login_required, name='dispatch')

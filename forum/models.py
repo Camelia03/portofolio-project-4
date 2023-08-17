@@ -10,7 +10,8 @@ class Thread(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='threads')
     image = CloudinaryField('image', null=True, blank=True)
     edited_on = models.DateTimeField(auto_now=True)
 

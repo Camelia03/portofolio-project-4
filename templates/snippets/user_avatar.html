@@ -9,5 +9,11 @@
         <div class="rounded-circle avatar-small" style="background-image: url({{ user.profile.avatar.url }});"></div>
         {% endif %}
     </div>
-    <div class="col ms-2">{{ user.username }}</div>
+    <div class="col ms-2">
+        {% if hide_profile_link %}
+        {{ user.username }}
+        {% else %}
+        <a href="{% url 'public_profile' user.username %}">{{ user.username }}</a>
+        {% endif %}
+    </div>
 </div>
