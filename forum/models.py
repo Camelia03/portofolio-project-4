@@ -17,6 +17,10 @@ class Thread(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    @property
+    def votes(self):
+        return self.upvotes.count()-self.downvotes.count()
+
 
 class Reply(models.Model):
 
@@ -27,8 +31,19 @@ class Reply(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
 
+# Upvote and Downvote model
 class Upvote(models.Model):
     thread = models.ForeignKey(Thread, related_name='upvotes',
+                               on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('thread', 'user')
+
+
+class Downvote(models.Model):
+    thread = models.ForeignKey(Thread, related_name='downvotes',
                                on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)

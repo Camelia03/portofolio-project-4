@@ -31,21 +31,30 @@
                 <div class="d-flex align-items-center mb-3">
                     <div class="mt-2">
                         <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
-                        <i class="fa-regular fa-heart"></i> {{ thread.upvotes.count }}
+                        <i class="fa-solid fa-right-left fa-rotate-90"></i> {{ thread.votes }}
                     </div>
                 </div>
 
-                <!-- Upvote Button -->
-                <form method="post" action="{% url 'upvote_thread' thread.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn bg-blue">
-                        {% if user_upvotes_thread %}
-                        <i class="fa-solid fa-heart-crack fa-spin"></i> Downvote
-                        {% else %}
-                        <i class="fa-sharp fa-solid fa-heart fa-bounce"></i> Upvote
-                        {% endif %}
-                    </button>
-                </form>
+                <!-- Upvote and Downvote Button -->
+                {% if user.is_authenticated %}
+                <div class="d-flex">
+                    <form method="POST" action="{% url 'upvote_thread' thread.pk %}" class="me-2">
+                        {% csrf_token %}
+                        <button type="submit" name="action"
+                            class="btn {% if user_upvotes_thread %}forum-btn-secondary{% else %}forum-btn-primary{% endif %}">
+                            <i class="fa-solid fa-up-long fa-beat-fade"></i> Upvote
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{% url 'downvote_thread' thread.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" name="action"
+                            class="btn {% if user_downvotes_thread %}forum-btn-secondary{% else %}forum-btn-primary{% endif %}">
+                            <i class="fa-solid fa-down-long"></i> Downvote
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
             </div>
 
         </div>
@@ -77,9 +86,7 @@
                     <span class=" text-muted font-weight-normal">
                         <em>{{ reply.created_on }}</em></span> |
                     {{ reply.user.username }} wrote:
-
                     <p class="card-text">{{ reply.content }}</p>
-
                 </div>
             </div>
             {% empty %}
@@ -89,4 +96,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock %}

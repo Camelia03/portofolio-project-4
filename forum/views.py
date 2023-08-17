@@ -1,7 +1,7 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Thread, Upvote
+from .models import Thread, Upvote, Downvote
 from django.views import View
 from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
@@ -50,7 +50,10 @@ class ThreadDetail(View):
         thread = get_object_or_404(Thread, pk=pk)
         replies = thread.replies.all()
         user_upvotes = Upvote.objects.filter(user=request.user, thread=thread)
+        user_downvotes = Downvote.objects.filter(
+            user=request.user, thread=thread)
         user_upvotes_thread = user_upvotes.count() != 0
+        user_downvotes_thread = user_downvotes.count() != 0
 
         return render(
             request,
@@ -59,7 +62,8 @@ class ThreadDetail(View):
                 "thread": thread,
                 "replies": replies,
                 "reply_form": ReplyForm(),
-                'user_upvotes_thread': user_upvotes_thread
+                'user_upvotes_thread': user_upvotes_thread,
+                'user_downvotes_thread': user_downvotes_thread
             },
         )
 
@@ -106,6 +110,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
     success_message = "You've registered successfully!"
 
 
+# Upvote and Downvote views
 @login_required
 def upvote_thread(request, pk):
     thread = get_object_or_404(Thread, pk=pk)
@@ -123,9 +128,38 @@ def upvote_thread(request, pk):
         # User hasn't upvoted the thread, so create a new upvote
         Upvote.objects.create(thread=thread, user=user)
 
+    downvote = Downvote.objects.filter(thread=thread, user=user)
+    if downvote:
+        downvote.delete()
+
     return redirect('thread_detail', pk=pk)
 
 
+@login_required
+def downvote_thread(request, pk):
+    thread = get_object_or_404(Thread, pk=pk)
+    user = request.user
+
+    # Check if the user has already downvoted the thread
+    user_downvotes_thread = Downvote.objects.filter(
+        thread=thread, user=user).exists()
+
+    if user_downvotes_thread:
+        # User has already downvoted the thread, so downvote it
+        downvote = Downvote.objects.get(thread=thread, user=user)
+        downvote.delete()
+    else:
+        # User hasn't downvoted the thread, so create a new downvote
+        Downvote.objects.create(thread=thread, user=user)
+
+    upvote = Upvote.objects.filter(thread=thread, user=user)
+    if upvote:
+        upvote.delete()
+
+    return redirect('thread_detail', pk=pk)
+
+
+# Profile
 @login_required
 def profile(request):
     return render(request, 'profile.html')
