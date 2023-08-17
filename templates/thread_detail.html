@@ -21,9 +21,11 @@
                 {% include 'snippets/user_avatar.html' with user=thread.user %}
             </div>
 
+            {% if thread.image.url  %}
             <div class="text-center">
                 <img src="{{ thread.image.url }}" class="img-fluid mb-3" alt="{{ thread.title }}">
             </div>
+            {% endif %}
             <p class="card-text">{{ thread.content }}</p>
             <div class="mt-2">
 

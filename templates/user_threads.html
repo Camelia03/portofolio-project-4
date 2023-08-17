@@ -11,9 +11,11 @@
         {% for thread in thread_list %}
         <div class="card mb-3">
             <div class="row g-0">
+                {% if thread.image.url  %}
                 <div class="col-md-4">
-                    <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="thread image">
                 </div>
+                {% endif %}
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{ thread.title }}</h5>
