@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('signup', views.SignUpView.as_view(), name='signup'),
 
-    path('channels/<str:name>', views.ChannelThreads.as_view(),
+    path('channels/<str:name>', views.Index.as_view(),
          name='channel_threads'),
 
     path('thread/<int:pk>/', views.ThreadDetail.as_view(), name="thread_detail"),

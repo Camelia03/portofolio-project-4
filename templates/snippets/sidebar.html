@@ -10,7 +10,7 @@
                         <i class="fa-solid fa-earth-americas"></i> ALL
                     </div>
                 </div>
-                <span class="badge bg-primary rounded-pill">{{ paginator.count }}</span>
+                <span class="badge bg-primary rounded-pill">{{ total_threads_nr }}</span>
             </a>
             {% for channel in channels %}
             <a href="{% url 'channel_threads' channel.slug %}"

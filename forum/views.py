@@ -28,19 +28,45 @@ class Index(ListView):
     context_object_name = 'thread_list'
 
     def get_queryset(self):
+        # Check if the url contains a channel name
+        channel = None
+        try:
+            channel_name = self.kwargs['name']
+            # Get a channel
+            channel = get_object_or_404(Channel, slug=channel_name)
+        except KeyError:
+            # Channel is not part of the url
+            pass
+
+        # Get the order by query param
         order_by = self.request.GET.get('order_by') or '-created_on'
 
+        # In case channel selected filter threads
+        if channel:
+            threads = Thread.objects.filter(channel=channel)
+        else:
+            threads = Thread.objects.all()
+
         if order_by == 'popular':
-            return Thread.objects.annotate(
+            # Popular represents the number of upvotes, so we sort by that
+            return threads.annotate(
                 num_upvotes=Count("upvotes")).order_by('-num_upvotes')
 
-        return Thread.objects.all().order_by(order_by)
+        return threads.order_by(order_by)
 
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
 
         context['order_by'] = self.request.GET.get('order_by') or '-created_on'
         context['channels'] = Channel.objects.all()
+        context['total_threads_nr'] = Thread.objects.count()
+
+        # Attempts to add a current channel if it's part of the url
+        try:
+            context['current_channel'] = get_object_or_404(
+                Channel, slug=self.kwargs['name'])
+        except KeyError:
+            pass
 
         return context
 
@@ -261,26 +287,5 @@ class ThreadSearch(ListView):
         # Adding a custom value to the context
         keyword = self.request.GET.get('keyword')
         context['keyword'] = keyword
-
-        return context
-
-
-# Channels views
-@method_decorator(login_required, name='dispatch')
-class ChannelThreads(ListView):
-    model = Thread
-    template_name = 'channel_threads.html'
-
-    def get_queryset(self):
-        channel = get_object_or_404(Channel, slug=self.kwargs['name'])
-        return Thread.objects.filter(channel=channel)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['channels'] = Channel.objects.all()
-
-        context['current_channel'] = get_object_or_404(
-            Channel, slug=self.kwargs['name'])
 
         return context
