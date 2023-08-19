@@ -115,6 +115,10 @@ class ThreadAdd(View):
         context = {
             "form": form,
         }
+        channel_name = request.GET.get('channel')
+        if channel_name:
+            form.fields['channel'].initial = Channel.objects.get(
+                slug=channel_name)
 
         return render(
             request,

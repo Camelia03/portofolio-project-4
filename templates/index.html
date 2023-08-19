@@ -22,7 +22,15 @@
         </select>
       </div>
     </div>
-    <a href="{% url 'thread_add' %}"><button type="button" class="btn bg-blue">Add a thread</button></a>
+    {% if current_channel %}
+    <a href="{% url 'thread_add' %}?channel={{ current_channel.slug }}">
+      <button type="button" class="btn bg-blue">Add a thread</button>
+    </a>
+    {% else %}
+    <a href="{% url 'thread_add' %}">
+      <button type="button" class="btn bg-blue">Add a thread</button>
+    </a>
+    {% endif %}
 
     <div class="py-4">
       {% for thread in thread_list %}
