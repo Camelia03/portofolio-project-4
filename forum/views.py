@@ -212,8 +212,8 @@ class UserThreads(View):
 @method_decorator(login_required, name='dispatch')
 class ThreadEdit(UserPassesTestMixin, UpdateView):
     model = Thread
-    fields = ["title", "content", "image"]
     template_name = "thread_edit.html"
+    form_class = ThreadForm
 
     # Check if the logged in user owns the thread
     def test_func(self):

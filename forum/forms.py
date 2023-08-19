@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 class ThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
-        fields = ['title', 'content', 'image']
+        fields = ['channel', 'title', 'content', 'image']
 
 
 class ReplyForm(forms.ModelForm):
