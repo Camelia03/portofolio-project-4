@@ -7,7 +7,8 @@
   <h1>Threads</h1>
 
   <!-- Order by dropdown, the correct option is selected depending on the order by param -->
-  <div>
+  <div class="d-flex align-items-center gap-2">
+    <div class="text-nowrap"><i class="fa-solid fa-sort"></i> Order by: </div>
     <select id="order-by-select" class="form-select" aria-label="Default select example">
       <option value="-created_on" {% if order_by == "-created_on" %}selected{% endif %}>Newest first</option>
       <option value="created_on" {% if order_by == "created_on" %}selected{% endif %}>Oldest first</option>
