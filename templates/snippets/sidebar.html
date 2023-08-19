@@ -10,7 +10,7 @@
                         <i class="fa-solid fa-earth-americas"></i> ALL
                     </div>
                 </div>
-                <span class="badge bg-primary rounded-pill">{{ total_threads_nr }}</span>
+                <span class="badge rounded-pill">{{ total_threads_nr }}</span>
             </a>
             {% for channel in channels %}
             <a href="{% url 'channel_threads' channel.slug %}"
@@ -20,7 +20,7 @@
                         <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
                     </div>
                 </div>
-                <span class="badge bg-primary rounded-pill">{{ channel.threads.count }}</span>
+                <span class="badge rounded-pill">{{ channel.threads.count }}</span>
             </a>
             {% endfor %}
         </div>
