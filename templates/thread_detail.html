@@ -10,6 +10,9 @@
 
     <div class="card mb-3">
         <div class="card-body">
+            <div class="thread-card-channel">
+                <i class="fa-solid {{ thread.channel.icon }}"></i> {{ thread.channel.name }}
+            </div>
             <h1 class="card-title">{{ thread.title }}</h1>
             <h6 class="card-subtitle mb-2 text-body-secondary">
                 <em>Created on: {{thread.created_on}} | Edited
