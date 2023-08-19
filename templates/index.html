@@ -9,28 +9,27 @@
   <div class="sidebar pt-4 me-4">
     <!-- Sidebar content goes here -->
     <h6>CHANNELS</h5>
-      <ol class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="list-group list-group-flush">
+        <a href="{% url 'index' %}" class="list-group-item d-flex justify-content-between align-items-start active">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               <i class="fa-solid fa-earth-americas"></i> ALL
             </div>
-            Content for list item
           </div>
           <span class="badge bg-primary rounded-pill">{{ paginator.count }}</span>
-        </li>
+        </a>
         {% for channel in channels %}
-        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <a href="{% url 'channel_threads' channel.slug %}"
+          class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
             </div>
-            Content for list item
           </div>
           <span class="badge bg-primary rounded-pill">{{ channel.threads.count }}</span>
-        </li>
+        </a>
         {% endfor %}
-      </ol>
+      </div>
 
   </div>
 
