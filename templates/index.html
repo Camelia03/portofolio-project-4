@@ -5,33 +5,7 @@
 {% block content %}
 <div class="d-flex">
 
-  <!-- Sidebar -->
-  <div class="sidebar pt-4 me-4">
-    <!-- Sidebar content goes here -->
-    <h6>CHANNELS</h5>
-      <div class="list-group list-group-flush">
-        <a href="{% url 'index' %}" class="list-group-item d-flex justify-content-between align-items-start active">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <i class="fa-solid fa-earth-americas"></i> ALL
-            </div>
-          </div>
-          <span class="badge bg-primary rounded-pill">{{ paginator.count }}</span>
-        </a>
-        {% for channel in channels %}
-        <a href="{% url 'channel_threads' channel.slug %}"
-          class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
-            </div>
-          </div>
-          <span class="badge bg-primary rounded-pill">{{ channel.threads.count }}</span>
-        </a>
-        {% endfor %}
-      </div>
-
-  </div>
+  {% include 'snippets/sidebar.html' %}
 
   <div class="">
     <div class="d-flex justify-content-between mt-2">

@@ -4,11 +4,19 @@
 
 {% block content %}
 
-<div class="py-4">
-    {% for thread in thread_list %}
+<div class="d-flex">
+    {% include 'snippets/sidebar.html' %}
 
-    {% include 'snippets/thread_card.html' with thread=thread %}
+    <div class="py-4">
+        {{ current_channel.name }}
+        {% for thread in thread_list %}
 
-    {% endfor %}
+        {% include 'snippets/thread_card.html' with thread=thread %}
+
+        {% empty %}
+        <p>There are no threads in this channel.</p>
+
+        {% endfor %}
+    </div>
 </div>
 {% endblock%}

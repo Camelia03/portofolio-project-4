@@ -274,3 +274,13 @@ class ChannelThreads(ListView):
     def get_queryset(self):
         channel = get_object_or_404(Channel, slug=self.kwargs['name'])
         return Thread.objects.filter(channel=channel)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['channels'] = Channel.objects.all()
+
+        context['current_channel'] = get_object_or_404(
+            Channel, slug=self.kwargs['name'])
+
+        return context
