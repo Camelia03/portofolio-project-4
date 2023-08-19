@@ -8,8 +8,19 @@
   {% include 'snippets/sidebar.html' %}
 
   <div class="flex-grow-1">
+    {% if current_channel %}
+    <div class="channel-image" style="background-image: url('{{ current_channel.image.url }}')" ; alt="channel image">
+    </div>
+    {% endif %}
+
     <div class="d-flex justify-content-between mt-2">
-      <h1>Threads</h1>
+      {% if current_channel %}
+      <h1>
+        {{ current_channel.name }}
+      </h1>
+      {% else %}
+      <h1>All Threads</h1>
+      {% endif %}
 
       <!-- Order by dropdown, the correct option is selected depending on the order by param -->
       <div class="d-flex align-items-center gap-2">
@@ -22,6 +33,7 @@
         </select>
       </div>
     </div>
+
     {% if current_channel %}
     <a href="{% url 'thread_add' %}?channel={{ current_channel.slug }}">
       <button type="button" class="btn bg-blue">Add a thread</button>
