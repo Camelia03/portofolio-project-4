@@ -5,6 +5,15 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
+class Channel(models.Model):
+    name = models.CharField(max_length=100)
+    image = CloudinaryField('image')
+    icon = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Thread(models.Model):
 
     title = models.CharField(max_length=200)
@@ -14,6 +23,8 @@ class Thread(models.Model):
         User, on_delete=models.CASCADE, related_name='threads')
     image = CloudinaryField('image', null=True, blank=True)
     edited_on = models.DateTimeField(auto_now=True)
+    channel = models.ForeignKey(
+        Channel, on_delete=models.CASCADE, related_name='threads')
 
     def __str__(self) -> str:
         return self.title
@@ -61,13 +72,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-# Channels
-class Channel(models.Model):
-    name = models.CharField(max_length=100)
-    image = CloudinaryField('image')
-    icon = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
