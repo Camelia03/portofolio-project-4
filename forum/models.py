@@ -61,3 +61,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+# Channels
+class Channel(models.Model):
+    name = models.CharField(max_length=100)
+    image = CloudinaryField('image')
+    icon = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
