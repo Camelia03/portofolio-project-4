@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="py-4">
+    {% for thread in thread_list %}
+
+    {% include 'snippets/thread_card.html' with thread=thread %}
+
+    {% endfor %}
+</div>
+{% endblock%}

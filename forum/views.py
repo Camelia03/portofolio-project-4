@@ -263,3 +263,14 @@ class ThreadSearch(ListView):
         context['keyword'] = keyword
 
         return context
+
+
+# Channels views
+@method_decorator(login_required, name='dispatch')
+class ChannelThreads(ListView):
+    model = Thread
+    template_name = 'channel_threads.html'
+
+    def get_queryset(self):
+        channel = get_object_or_404(Channel, slug=self.kwargs['name'])
+        return Thread.objects.filter(channel=channel)
