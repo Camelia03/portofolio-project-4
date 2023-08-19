@@ -1,7 +1,7 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Thread, Upvote, Downvote
+from .models import Thread, Upvote, Downvote, Channel
 from django.views import View
 from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
@@ -40,6 +40,7 @@ class Index(ListView):
         context = super().get_context_data(**kwargs)
 
         context['order_by'] = self.request.GET.get('order_by') or '-created_on'
+        context['channels'] = Channel.objects.all()
 
         return context
 

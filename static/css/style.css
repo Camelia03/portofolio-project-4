@@ -90,7 +90,6 @@ body {
 .sidebar {
     min-height: 100vh;
     border-right: 1px solid #ccc;
-    padding: 15px;
     width: 250px;
 }
 

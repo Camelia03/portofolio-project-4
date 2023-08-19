@@ -70,24 +70,12 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row flex-nowrap">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar content goes here -->
-        sidebar
-      </div>
+  <!-- Main Content -->
+  <main class="container-fluid">
+    {% block content %}
 
-      <!-- Main Content -->
-      <main class="flex-fill">
-        <!-- Your existing content goes here -->
-        {% block content %}
-
-        {% endblock %}
-      </main>
-    </div>
-
-  </div>
+    {% endblock %}
+  </main>
 
   <!-- Footer -->
   <footer class="pt-2 text-bold">

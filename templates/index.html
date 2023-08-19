@@ -3,65 +3,97 @@
 {% load static %}
 
 {% block content %}
-<div class="d-flex justify-content-between mt-2">
-  <h1>Threads</h1>
+<div class="d-flex">
 
-  <!-- Order by dropdown, the correct option is selected depending on the order by param -->
-  <div class="d-flex align-items-center gap-2">
-    <div class="text-nowrap"><i class="fa-solid fa-sort"></i> Order by: </div>
-    <select id="order-by-select" class="form-select" aria-label="Default select example">
-      <option value="-created_on" {% if order_by == "-created_on" %}selected{% endif %}>Newest first</option>
-      <option value="created_on" {% if order_by == "created_on" %}selected{% endif %}>Oldest first</option>
-      <option value="title" {% if order_by == "title" %}selected{% endif %}>Title</option>
-      <option value="popular" {% if order_by == "popular" %}selected{% endif %}>Most upvoted</option>
-    </select>
+  <!-- Sidebar -->
+  <div class="sidebar pt-4 me-4">
+    <!-- Sidebar content goes here -->
+    <h6>CHANNELS</h5>
+      <ol class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <i class="fa-solid fa-earth-americas"></i> ALL
+            </div>
+            Content for list item
+          </div>
+          <span class="badge bg-primary rounded-pill">14</span>
+        </li>
+        {% for channel in channels %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
+            </div>
+            Content for list item
+          </div>
+          <span class="badge bg-primary rounded-pill">14</span>
+        </li>
+        {% endfor %}
+      </ol>
+
   </div>
-</div>
-<a href="{% url 'thread_add' %}"><button type="button" class="btn bg-blue">Add a thread</button></a>
 
+  <div class="">
+    <div class="d-flex justify-content-between mt-2">
+      <h1>Threads</h1>
 
+      <!-- Order by dropdown, the correct option is selected depending on the order by param -->
+      <div class="d-flex align-items-center gap-2">
+        <div class="text-nowrap"><i class="fa-solid fa-sort"></i> Order by: </div>
+        <select id="order-by-select" class="form-select" aria-label="Default select example">
+          <option value="-created_on" {% if order_by == "-created_on" %}selected{% endif %}>Newest first</option>
+          <option value="created_on" {% if order_by == "created_on" %}selected{% endif %}>Oldest first</option>
+          <option value="title" {% if order_by == "title" %}selected{% endif %}>Title</option>
+          <option value="popular" {% if order_by == "popular" %}selected{% endif %}>Most upvoted</option>
+        </select>
+      </div>
+    </div>
+    <a href="{% url 'thread_add' %}"><button type="button" class="btn bg-blue">Add a thread</button></a>
 
-<div class="py-4">
-  {% for thread in thread_list %}
+    <div class="py-4">
+      {% for thread in thread_list %}
 
-  {% include 'snippets/thread_card.html' with thread=thread %}
+      {% include 'snippets/thread_card.html' with thread=thread %}
 
-  {% endfor %}
+      {% endfor %}
 
-  <!-- Pagination -->
-  <div class="pagination justify-content-center">
-    <ul class="pagination">
-      {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?order_by={{ order_by }}&page=1" aria-label="First">
-          <span aria-hidden="true">&laquo;&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.previous_page_number }}"
-          aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      {% endif %}
+      <!-- Pagination -->
+      <div class="pagination justify-content-center">
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?order_by={{ order_by }}&page=1" aria-label="First">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.previous_page_number }}"
+              aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
 
-      <li class="page-item disabled">
-        <span class="page-link">Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
-      </li>
+          <li class="page-item disabled">
+            <span class="page-link">Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+          </li>
 
-      {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.next_page_number }}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="?order_by={{ order_by }}&page={{ paginator.num_pages }}" aria-label="Last">
-          <span aria-hidden="true">&raquo;&raquo;</span>
-        </a>
-      </li>
-      {% endif %}
-    </ul>
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?order_by={{ order_by }}&page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?order_by={{ order_by }}&page={{ paginator.num_pages }}" aria-label="Last">
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock%}
