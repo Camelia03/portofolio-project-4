@@ -15,7 +15,7 @@
                     on: {{ thread.edited_on }}</h6>
                 <h6 class="card-subtitle mb-2 text-body-secondary">
                     {% include 'snippets/user_avatar.html' with user=thread.user %}</h6>
-                <p class="card-text">{{ thread.content|truncatewords:10 }}</p>
+                <p class="card-text">{{ thread.content|linebreaks|truncatewords:10 }}</p>
                 <a href="{% url 'thread_detail' thread.pk %}" class="card-link">Read more</a>
 
                 <!-- Count of replies and Upvotes -->
