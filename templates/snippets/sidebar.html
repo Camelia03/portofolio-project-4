@@ -1,28 +1,33 @@
 <!-- Sidebar -->
-<div class="sidebar pt-4 me-4">
+<div id="sidebar" class="sidebar pt-4 offcanvas-lg offcanvas-start">
     <!-- Sidebar content goes here -->
-    <h6>CHANNELS</h5>
-        <div class="list-group list-group-flush">
-            <a href="{% url 'index' %}"
-                class="list-group-item d-flex justify-content-between align-items-start {% if not current_channel %}active{% endif %}">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">
-                        <i class="fa-solid fa-earth-americas"></i> ALL
-                    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <h6 class="ps-2">CHANNELS</h6>
+        <button type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebar" class="btn d-lg-none">
+            <i class="fa-regular fa-circle-xmark fa-xl"></i>
+        </button>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="{% url 'index' %}"
+            class="list-group-item d-flex justify-content-between align-items-start {% if not current_channel %}active{% endif %}">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">
+                    <i class="fa-solid fa-earth-americas"></i> ALL
                 </div>
-                <span class="badge rounded-pill">{{ total_threads_nr }}</span>
-            </a>
-            {% for channel in channels %}
-            <a href="{% url 'channel_threads' channel.slug %}"
-                class="list-group-item d-flex justify-content-between align-items-start {% if channel == current_channel %} active {% endif %}">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">
-                        <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
-                    </div>
+            </div>
+            <span class="badge rounded-pill">{{ total_threads_nr }}</span>
+        </a>
+        {% for channel in channels %}
+        <a href="{% url 'channel_threads' channel.slug %}"
+            class="list-group-item d-flex justify-content-between align-items-start {% if channel == current_channel %} active {% endif %}">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">
+                    <i class="fa-solid {{ channel.icon }}"></i> {{ channel.name }}
                 </div>
-                <span class="badge rounded-pill">{{ channel.threads.count }}</span>
-            </a>
-            {% endfor %}
-        </div>
+            </div>
+            <span class="badge rounded-pill">{{ channel.threads.count }}</span>
+        </a>
+        {% endfor %}
+    </div>
 
 </div>
