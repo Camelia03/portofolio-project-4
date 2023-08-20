@@ -31,9 +31,9 @@
                             <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
                             <i class="fa-solid fa-right-left fa-rotate-90"></i> {{ thread.votes }}
                         </p>
-                        <a href="{% url 'thread_detail' thread.pk %}" class="card-link">Read more</a>
-                        <a href="{% url 'thread_edit' thread.pk %}" class="card-link">Edit thread</a>
-                        <button type="button" class="card-link delete-button" data-bs-toggle="modal"
+                        <a href="{% url 'thread_detail' thread.pk %}" class="btn forum-btn-primary">Read more</a>
+                        <a href="{% url 'thread_edit' thread.pk %}" class="btn forum-btn-secondary">Edit thread</a>
+                        <button type="button" class="btn forum-btn-delete" data-bs-toggle="modal"
                             data-bs-target="#deleteConfirmModal" data-bs-thread-id="{{ thread.id }}">
                             Delete Thread
                         </button>

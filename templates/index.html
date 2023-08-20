@@ -7,7 +7,7 @@
 
   {% include 'snippets/sidebar.html' %}
 
-  <div class="flex-grow-1 px-lg-4">
+  <div class="flex-grow-1 px-4">
     {% if current_channel %}
     <div class="channel-image" style="background-image: url('{{ current_channel.image.url }}')" ; alt="channel image">
     </div>
@@ -36,11 +36,11 @@
 
     {% if current_channel %}
     <a href="{% url 'thread_add' %}?channel={{ current_channel.slug }}">
-      <button type="button" class="btn bg-blue">Add a thread</button>
+      <button type="button" class="btn forum-btn-primary">Add a thread</button>
     </a>
     {% else %}
     <a href="{% url 'thread_add' %}">
-      <button type="button" class="btn bg-blue">Add a thread</button>
+      <button type="button" class="btn forum-btn-primary">Add a thread</button>
     </a>
     {% endif %}
 

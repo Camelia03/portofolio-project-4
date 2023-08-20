@@ -1,73 +1,60 @@
 body {
-    background-color: white;
-    color: black;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .text-blue {
-    color: #4c86a8;
+    color: #004696;
 }
 
 .text-bold {
     font-weight: bold;
 }
 
-.forum-btn-primary {
+.navbar {
+    background-color: #004696;
+}
+
+footer {
     background-color: #004696;
     color: #fff;
 }
 
-.forum-btn-primary:hover {
-    background-color: rgb(0, 93, 199);
+.btn.forum-btn-primary {
+    background-color: #E58C18;
     color: #fff;
+    font-weight: bold;
+    border: 1px solid #E58C18;
 }
 
-.bg-blue {
-    background-color: #120460;
-    color: white;
+.btn.forum-btn-primary:active {
+    background-color: #b97113;
+    color: #fff;
+    border-color: #E58C18;
 }
 
-.forum-btn-secondary {
+.btn.forum-btn-primary:hover {
+    background-color: #eca446;
+    color: #fff;
+    border-color: #E58C18;
+}
+
+.btn.forum-btn-secondary {
     background-color: #fff;
     color: #004696;
     border: 1px solid #004696;
 }
 
-.forum-btn-secondary:hover {
+.btn.forum-btn-secondary:active {
+    background-color: #002d61;
+    color: #004696;
     border: 1px solid #004696;
 }
 
-.reply-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    margin-top: 1.3em;
-}
-
-.reply-form input[type="text"] {
-    flex: 1;
-    margin-right: 8px;
-    padding: 6px 10px;
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-}
-
-.reply-form button {
-    background-color: #6c63ff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.reply-form button:hover {
-    background-color: #534eda;
+.btn.forum-btn-secondary:hover {
+    background-color: #d2e4f9;
+    color: #004696;
+    border: 1px solid #004696;
 }
 
 .card {
@@ -87,10 +74,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.thread-detail-image {
+    max-width: 800px;
+}
+
 .sidebar {
     min-height: 100vh;
     border-right: 1px solid #ccc;
-    width: 250px;
+    min-width: 250px;
 }
 
 .sidebar a {
@@ -98,16 +89,31 @@ body {
     margin-bottom: 10px;
 }
 
-.delete-button {
-    background-color: none;
-    border: none;
-    color: var(--bs-danger-border-subtle);
+.sidebar h6 {
+    color: grey;
+}
 
+.btn.forum-btn-delete {
+    background-color: none;
+    border: 1px solid var(--bs-danger);
+    color: var(--bs-danger);
+    font-weight: bold;
+}
+
+.btn.forum-btn-delete:active {
+    background-color: #f9b1b1;
+    color: var(--bs-danger);
+    border: 1px solid var(--bs-danger);
+}
+
+.btn.forum-btn-delete:hover {
+    background-color: #f8dddd;
+    color: var(--bs-danger);
+    border: 1px solid var(--bs-danger);
 }
 
 .avatar-big {
     max-width: 180px;
-
 }
 
 .avatar-small {
@@ -132,23 +138,19 @@ body {
 }
 
 .list-group .list-group-item:hover {
-    background-color: #c5dbf5;
+    background-color: #f4e6d5;
 }
 
 .list-group .list-group-item.active {
-    background-color: #004696;
+    background-color: #E58C18;
 }
 
 .list-group .badge {
-    background-color: #120460;
+    background-color: #004696;
 }
 
 .channel-toggle-button {
     background: none;
     border: 0;
     color: var(--bs-navbar-color);
-}
-
-.sidebar h6 {
-    color: grey;
 }

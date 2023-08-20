@@ -13,20 +13,28 @@
             <div class="thread-card-channel">
                 <i class="fa-solid {{ thread.channel.icon }}"></i> {{ thread.channel.name }}
             </div>
-            <h1 class="card-title">{{ thread.title }}</h1>
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="card-title">{{ thread.title }}</h1>
+                <!-- Edit thread button -->
+                {% if user.id == thread.user.id %}
+                <div class="mt-2">
+                    <a href="{% url 'thread_edit' thread.pk %}" class="btn forum-btn-secondary">Edit thread</a>
+                </div>
+                {% endif %}
+            </div>
             <h6 class="card-subtitle mb-2 text-body-secondary">
                 <em>Created on: {{thread.created_on}} | Edited
                     on: {{ thread.edited_on }}</em>
             </h6>
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center pb-2">
                 <div class="me-2">Author: </div>
                 {% include 'snippets/user_avatar.html' with user=thread.user %}
             </div>
 
             {% if thread.image.url  %}
             <div class="text-center">
-                <img src="{{ thread.image.url }}" class="img-fluid mb-3" alt="{{ thread.title }}">
+                <img src="{{ thread.image.url }}" class="img-fluid mb-3 thread-detail-image" alt="{{ thread.title }}">
             </div>
             {% endif %}
             <p class="card-text">{{ thread.content|linebreaks }}</p>
@@ -61,14 +69,6 @@
                 </div>
                 {% endif %}
             </div>
-
-
-            <!-- Edit thread button -->
-            {% if user.id == thread.user.id %}
-            <div class="mt-2">
-                <a href="{% url 'thread_edit' thread.pk %}" class="card-link">Edit thread</a>
-            </div>
-            {% endif %}
         </div>
     </div>
 </div>
@@ -84,7 +84,7 @@
             <form method="post" class="my-2">
                 {% csrf_token %}
                 {{ reply_form | crispy }}
-                <button type="submit" class="btn btn-signup btn-lg bg-blue">Submit</button>
+                <button type="submit" class="btn btn-signup forum-btn-primary">Submit</button>
             </form>
 
             {% for reply in thread.replies.all %}
