@@ -18,10 +18,12 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-blue navbar-dark text-bold">
     <div class="container-fluid">
+      {% if has_sidebar %}
       <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasResponsive"
         class="d-lg-none channel-toggle-button">
         <i class="fa-regular fa-compass fa-2xl"></i>
       </button>
+      {% endif %}
       <a class="navbar-brand" href="#">
         <img src="{% static 'media/goglobal1-logo.png' %}" alt="GoGlobal's logo" width="100" height="84" />
       </a>

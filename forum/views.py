@@ -60,6 +60,7 @@ class Index(ListView):
         context['order_by'] = self.request.GET.get('order_by') or '-created_on'
         context['channels'] = Channel.objects.all()
         context['total_threads_nr'] = Thread.objects.count()
+        context['has_sidebar'] = True
 
         # Attempts to add a current channel if it's part of the url
         try:
