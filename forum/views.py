@@ -241,12 +241,14 @@ class UserThreads(View):
 
 
 @method_decorator(login_required, name='dispatch')
-class ThreadEdit(UserPassesTestMixin, UpdateView):
+class ThreadEdit(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Thread
     template_name = "thread_edit.html"
     form_class = ThreadForm
+    success_message = "Your thread has been edited successfully!"
 
     # Check if the logged in user owns the thread
+
     def test_func(self):
         thread = self.get_object()
         return self.request.user.id == thread.user.id

@@ -6,7 +6,7 @@
 {% load crispy_forms_tags %}
 
 <div class="container mt-5">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% include 'snippets/app_message.html' with messages=messages %}
 
     <div class="card mb-3">
         <div class="card-body">
