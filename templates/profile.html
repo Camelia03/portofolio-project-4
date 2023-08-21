@@ -6,7 +6,7 @@
 
 {% include 'snippets/app_message.html' with messages=messages %}
 
-<div class="row my-3 p-3">
+<div class="my-3">
     <div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-body text-center">
@@ -19,7 +19,7 @@
                 {% endif %}
                 <p>Email address: {{ user.email }}</p>
                 <p><strong>About me:</strong> {{ user.profile.about }}</p>
-                <a href="{% url 'edit_profile' %}">Edit Profile</a>
+                <a href="{% url 'edit_profile' %}" class="btn forum-btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>
