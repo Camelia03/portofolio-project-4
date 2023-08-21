@@ -24,7 +24,7 @@ from django.contrib.auth.models import User
 class Index(ListView):
     model = Thread
     template_name = 'index.html'
-    paginate_by = 2
+    paginate_by = 5
     context_object_name = 'thread_list'
 
     def get_queryset(self):
@@ -276,7 +276,7 @@ class ThreadDelete(View):
 class ThreadSearch(ListView):
     model = Thread
     template_name = 'search.html'
-    paginate_by = 2
+    paginate_by = 5
     context_object_name = 'threads'
 
     def get_queryset(self):
