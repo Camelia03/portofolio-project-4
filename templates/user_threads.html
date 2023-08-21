@@ -3,41 +3,39 @@
 
 {% block title %}My Threads{% endblock title %}
 {% block content %}
-<div>
+<div class="container-lg py-4">
     <h1>My Threads</h1>
     {% include 'snippets/app_message.html' with messages=messages %}
 
-    <div class="py-4">
-        {% for thread in thread_list %}
-        <div class="card mb-3">
-            <div class="row g-0">
-                {% if thread.image.url  %}
-                <div class="col-md-4">
-                    <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="thread image">
-                </div>
-                {% endif %}
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="thread-card-channel">
-                            <i class="fa-solid {{ thread.channel.icon }}"></i> {{ thread.channel.name }}
-                        </div>
-                        <h5 class="card-title">{{ thread.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Created on: {{thread.created_on}} | Edited
-                            on: {{ thread.edited_on }}</h6>
-                        <p class="card-text">{{ thread.content|truncatewords:10 }}</p>
-
-                        <!-- Count of replies and Upvotes -->
-                        <p class="mt-2">
-                            <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
-                            <i class="fa-solid fa-right-left fa-rotate-90"></i> {{ thread.votes }}
-                        </p>
-                        <a href="{% url 'thread_detail' thread.pk %}" class="btn forum-btn-primary">Read more</a>
-                        <a href="{% url 'thread_edit' thread.pk %}" class="btn forum-btn-secondary">Edit thread</a>
-                        <button type="button" class="btn forum-btn-delete" data-bs-toggle="modal"
-                            data-bs-target="#deleteConfirmModal" data-bs-thread-id="{{ thread.id }}">
-                            Delete Thread
-                        </button>
+    {% for thread in thread_list %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            {% if thread.image.url  %}
+            <div class="col-md-4">
+                <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="thread image">
+            </div>
+            {% endif %}
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="thread-card-channel">
+                        <i class="fa-solid {{ thread.channel.icon }}"></i> {{ thread.channel.name }}
                     </div>
+                    <h5 class="card-title">{{ thread.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Created on: {{thread.created_on}} | Edited
+                        on: {{ thread.edited_on }}</h6>
+                    <p class="card-text">{{ thread.content|truncatewords:10 }}</p>
+
+                    <!-- Count of replies and Upvotes -->
+                    <p class="mt-2">
+                        <i class="fa-regular fa-comments"></i> {{ thread.replies.count }}
+                        <i class="fa-solid fa-right-left fa-rotate-90"></i> {{ thread.votes }}
+                    </p>
+                    <a href="{% url 'thread_detail' thread.pk %}" class="btn forum-btn-primary">Read more</a>
+                    <a href="{% url 'thread_edit' thread.pk %}" class="btn forum-btn-secondary">Edit thread</a>
+                    <button type="button" class="btn forum-btn-delete" data-bs-toggle="modal"
+                        data-bs-target="#deleteConfirmModal" data-bs-thread-id="{{ thread.id }}">
+                        Delete Thread
+                    </button>
                 </div>
             </div>
         </div>

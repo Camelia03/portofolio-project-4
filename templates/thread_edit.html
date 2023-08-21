@@ -3,14 +3,15 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
-<h1>Edit your thread</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <button type="submit" class="btn forum-btn-primary text-bold btn-md">Save Changes</button>
-    <a href="{% url 'thread_detail' object.pk %}"><button type="button"
-            class="btn forum-btn-secondary text-bold">Cancel</button></a>
+<div class="container-lg py-4">
+    <h1>Edit your thread</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn forum-btn-primary text-bold btn-md">Save Changes</button>
+        <a href="{% url 'thread_detail' object.pk %}"><button type="button"
+                class="btn forum-btn-secondary text-bold">Cancel</button></a>
 
-</form>
-
+    </form>
+</div>
 {% endblock %}

@@ -5,18 +5,19 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
+<div class="container-lg py-4">
+    <h1>Add a new thread</h1>
+    <form method="POST" action="{% url 'thread_add' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form | crispy }}
+        </div>
+        <div>
+            <button type="submit" class="btn forum-btn-primary text-bold btn-md">Add Thread</button>
+            <a href="{% url 'index' %}"><button type="button"
+                    class="btn forum-btn-secondary text-bold">Cancel</button></a>
 
-<h1>Add a new thread</h1>
-<form method="POST" action="{% url 'thread_add' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="mb-3">
-        {{ form | crispy }}
-    </div>
-    <div>
-        <button type="submit" class="btn forum-btn-primary text-bold btn-md">Add Thread</button>
-        <a href="{% url 'index' %}"><button type="button" class="btn forum-btn-secondary text-bold">Cancel</button></a>
-
-    </div>
-</form>
-
+        </div>
+    </form>
+</div>
 {% endblock %}

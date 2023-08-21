@@ -5,7 +5,7 @@
 {% load static %}
 
 <!-- User's Profile -->
-<div class="row my-3 p-3">
+<div class="my-3">
     <div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-body text-center">
@@ -23,13 +23,14 @@
 </div>
 
 <!-- User's Threads -->
-<h2>{{ public_user.username }}'s Threads</h2>
-{% for thread in public_user.threads.all %}
+<div class="container-lg">
+    <h2>{{ public_user.username }}'s Threads</h2>
+    {% for thread in public_user.threads.all %}
 
-{% include 'snippets/thread_card.html' with thread=thread %}
+    {% include 'snippets/thread_card.html' with thread=thread %}
 
-{% empty %}
-<p>{{ public_user.username }} does not have any threads.</p>
-{% endfor %}
-
+    {% empty %}
+    <p>{{ public_user.username }} does not have any threads.</p>
+    {% endfor %}
+</div>
 {% endblock %}
