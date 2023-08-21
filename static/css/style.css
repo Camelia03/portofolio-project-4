@@ -82,6 +82,7 @@ footer {
 
 .thread-detail-image {
     max-width: 800px;
+    width: 100%;
 }
 
 .sidebar {
