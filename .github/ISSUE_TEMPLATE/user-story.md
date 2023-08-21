@@ -1,7 +1,7 @@
 ---
 name: User story
-about: 'USER STORY: <Title>'
-title: ''
+about: ''
+title: 'USER STORY: <Title>'
 labels: story
 assignees: Camelia03
 
