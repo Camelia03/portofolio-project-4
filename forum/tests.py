@@ -162,3 +162,45 @@ class ChannelThreadsViewTest(TestCase):
             response.context['thread_list'],
             Thread.objects.filter(channel=channel).order_by('-created_on')
         )
+
+
+class ThreadDetailViewTest(TestCase):
+    """Test the thread details view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+        self.thread = Thread.objects.create(
+            title="Test Thread",
+            content="Test Model",
+            user=self.user,
+            channel=self.channel
+        )
+        self.thread.save()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+        pass
+
+    def test_thread_shown_with_correct_template(self):
+        """Test that the thread is shown using the correct template"""
+
+        response = self.client.get(
+            reverse('thread_detail', kwargs={'pk': self.thread.id})
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.thread.title)
+        self.assertContains(response, self.thread.content)
+        self.assertTemplateUsed(response, "thread_detail.html")
+
+    def test_returns_404_for_wrong_threads(self):
+        """Tests that 404 is returned for wrong thread ids"""
+
+        response = self.client.get(
+            reverse('thread_detail', kwargs={'pk': 500})
+        )
+
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "404.html")
