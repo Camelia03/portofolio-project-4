@@ -2,7 +2,7 @@
     <div class="row g-0">
         {% if thread.image.url  %}
         <div class="col-md-4">
-            <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="thread image" width="100%">
+            <img src="{{ thread.image.url }}" class="img-fluid rounded-start" alt="thread image">
         </div>
         {% endif %}
         <div class="col-md-8">
@@ -13,8 +13,8 @@
                 <h5 class="card-title">{{ thread.title }}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Created on: {{thread.created_on}} | Edited
                     on: {{ thread.edited_on }}</h6>
-                <h6 class="card-subtitle mb-2 text-body-secondary">
-                    {% include 'snippets/user_avatar.html' with user=thread.user %}</h6>
+                <div class="card-subtitle mb-2 text-body-secondary">
+                    {% include 'snippets/user_avatar.html' with user=thread.user %}</div>
                 <p class="card-text">{{ thread.content|linebreaks|truncatewords:10 }}</p>
                 <a href="{% url 'thread_detail' thread.pk %}" class="btn forum-btn-primary">Read more</a>
 

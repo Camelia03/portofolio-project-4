@@ -15,7 +15,7 @@
                 {% if not user.profile.avatar %}
                 <img class="rounded-circle avatar-big" src="{% static 'media/avatar_profile.png' %}" alt="avatar">
                 {% else %}
-                <img class="rounded-circle avatar-big" src="{{ user.profile.avatar.url }}" />
+                <img class="rounded-circle avatar-big" src="{{ user.profile.avatar.url }}" alt="avatar">
                 {% endif %}
                 <p>Email address: {{ user.email }}</p>
                 <p><strong>About me:</strong> {{ user.profile.about }}</p>

@@ -4,8 +4,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Join GoGlobal! Always stay connected">
   <meta name="keywords" content="goglobal, social, media, connect, thread, connection, community">
   <meta name="author" content="Camelia Weber">
@@ -13,10 +13,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="icon" href="{% static 'media/favicon.ico' %}" type="image/x-icon">
   <link rel="shortcut icon" href="{% static 'media/favicon.ico' %}" type="image/x-icon">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
   <title>{% block title %} GoGlobal {% endblock %}</title>
@@ -28,13 +28,13 @@
   <nav class="navbar navbar-expand-lg navbar-dark text-bold sticky-top">
     <div class="container-fluid">
       {% if has_sidebar %}
-      <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasResponsive"
+      <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
         class="d-lg-none channel-toggle-button">
         <i class="fa-regular fa-compass fa-2xl"></i>
       </button>
       {% endif %}
       <a class="navbar-brand" href="{% url 'index' %}">
-        <img src="{% static 'media/goglobal_logo.png' %}" alt="GoGlobal's logo" width="80" height="50" />
+        <img src="{% static 'media/goglobal_logo.png' %}" alt="GoGlobal's logo" width="80" height="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

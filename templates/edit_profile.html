@@ -10,8 +10,7 @@
         {{ user_form | crispy }}
         {{ profile_form | crispy }}
         <button type="submit" class="btn forum-btn-primary text-bold btn-md">Save Changes</button>
-        <a href="{% url 'user_profile' %}"><button type="button"
-                class="btn forum-btn-secondary text-bold">Cancel</button></a>
+        <a href="{% url 'user_profile' %}" class="btn forum-btn-secondary text-bold">Cancel</a>
 
     </form>
 </div>

@@ -37,7 +37,7 @@
                 <img src="{{ thread.image.url }}" class="img-fluid mb-3 thread-detail-image" alt="{{ thread.title }}">
             </div>
             {% endif %}
-            <p class="card-text">{{ thread.content|linebreaks }}</p>
+            <div class="card-text">{{ thread.content|linebreaks }}</div>
             <div class="mt-2">
 
                 <!-- Count of replies and Upvotes -->
