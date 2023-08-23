@@ -119,7 +119,7 @@ The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 
 
-![GoGlobal's logo Color Pallete](/static/media/logo_palette.pngpng)
+![GoGlobal's logo Color Pallete](/static/media/logo_palette.png)
 The logo was created using the [LOGO](https://app.logo.com/) website.
 
 ### Typography
@@ -367,12 +367,15 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     ![screenshot](docs/testing/home_page_desktop.png)
 
   - **Channels-homepage-mobile**
+
     ![screenshot](docs/testing/home_page_mobile.png)
 
   - **Channels-expanded-desktop**
+
     ![screenshot](docs/testing/channels_expanded_desktop.png)
 
   - **Channels-expanded-mobile**
+
     ![screenshot](docs/testing/channels_expanded_mobile.png)
 
 - **Order by**
@@ -383,6 +386,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     ![screenshot](docs/testing/order_by_desktop.jpg)
 
   - **Order-by-mobile**
+
     ![screenshot](docs/testing/order_by_mobile.jpg)
 
 - **Pagination**
@@ -399,6 +403,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     ![screenshot](docs/testing/home_page_desktop.png)
 
   - **Home Page mobile**
+
     ![screenshot](docs/testing/home_page_mobile.png)
 
 - **My Profile Page**
@@ -428,6 +433,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     ![screenshot](docs/testing/thread_details.png)
 
   - **Thread Details Page- replies section**
+  
     ![screenshot](docs/testing/replies.png)
 
 
@@ -475,6 +481,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords or phrases, and it expertly guides them to threads that match their interests. Even if no results are found for a specific keyword, the search bar ensures the user informed, allowing them to refine their search or explore other topics.
 
     ![screenshot](docs/testing/search_results.png)
+
     ![screenshot](docs/testing/no_search_results.png)
 
 
@@ -494,13 +501,16 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Error Pages**
 
-    - If a user reaches a page that doesn't exist or isn't allowed (like a regular user trying to access the admin panel or deleting others' posts), they'll see an error page. It has a button to take them back to their feed.
+    - If a user reaches a page that doesn't exist or isn't allowed (like a regular user trying to access the admin panel or deleting others' posts), they'll see an error page. It has a button to take them back to home page.
 
-    ![screenshot]()
+    ![screenshot](docs/testing/error_401.png)
 
-    ![screenshot]()
+    ![screenshot](docs/testing/error_403.png)
 
-    ![screenshot]()
+    ![screenshot](docs/testing/error_404.png)
+
+    ![screenshot](docs/testing/error_500.png)
+
 
 
 ### Future Features
