@@ -87,7 +87,7 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 |23 |Replies            |9|Won't have|As a registered user I can respond to replies on the communication platform so that I can engage in discussions, share my perspective, and interact with others in the community|
 | 3 |Channels            |34|Could have|As a registered user I can utilize existing channels on the communication platform to read, post threads, and engage in conversations so that I can stay informed about diverse topics and contribute my insights and questions|
 |48 |Admin's action      |7|Could have|As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines|
-|48 |Admin's action      |8|Could have|As an admin user I can **delete other user's threads ** so that I can update the site's content                                  |
+|48 |Admin's action      |8|Could have|As an admin user I can delete other user's threads so that I can update the site's content                                  |
 |48 |Admin's action      |33|Could have|As an admin user I can create a new channel within the communication platform so that users can have a dedicated space to discuss project-related updates, share resources, and collaborate effectively|
 |49 |Functionalities     |29|Must have|As a registered user I can search for other user's threads so that I can discover relevant content                               |
 |49 |Functionalities     |30|Must have|As a registered user, I can select different sorting options so that I can customize the way I view the list of items and find the information I'm interested in more efficiently|
@@ -97,6 +97,7 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 | 3 |Channels            |45|Won't have|As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel|
 | 3 |Channels            |46|Won't have|As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests|
 | 3 | Channels           |47|Won't have|As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members|
+| 3 | Admin's action           |51|Won't have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of posts that may require deletion or improved site organization|
 
 
 ### Color Scheme
@@ -693,7 +694,9 @@ GitHub Issues served as an additional Agile tool. Within this context, I utilize
 
 - [Closed Issues](https://github.com/Camelia03/portofolio-project-4/issues?q=is%3Aissue+is%3Aclosed)
 
-    ![screenshot](docs/closed_issues.png)
+    ![screenshot](docs/closed_issues_firstpage.png)
+    ![screenshot](docs/closed_issues_secondpage.png)
+
 
 
 ### MoSCoW Prioritization
