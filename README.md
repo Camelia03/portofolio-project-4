@@ -20,6 +20,10 @@ GoGlobal stands as a Django-based social media application that enables users to
   * [Wireframes](#Wireframes)
   * [Features](#Features)
 
+* [Technologies Used](#Technologies-Used)
+  * [Languages Used](#Languages-Used)
+  * [Frameworks, Libraries & Programs Used](#Frameworks,-Libraries-&-Programs-Used)
+
 
 ## User Experience (UX)
 
@@ -502,3 +506,46 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 - Allow users to create their own channels
     - Registered users will be able to create personalized channels on the platform. This enables them to start discussions, share content, and connect with like-minded individuals who have similar interests.
 
+
+
+## Technologies-Used
+
+### Languages-Used
+
+ - HTML is utilized as the primary language to establish the website's structural framework.
+ - CSS is employed to tailor the visual style of the website.
+ - JavaScript is leveraged for modifying the DOM across different pages.
+ - Python plays a pivotal role in configuring the site's fundamental functionalities, including models and views.
+
+### Frameworks,-Libraries-&-Programs-Used:
+- Python Modules/Packages-Used:
+
+This project relies on several core packages, with some key ones highlighted along with their functions:
+
+ - django: A high-level Python web framework used for developing this application/site.
+ - crispy-bootstrap4: A Bootstrap 4 template pack designed for django-crispy-forms.
+ - dj3-cloudinary-storage: This package simplifies integration with Cloudinary by implementing Django Storage API.
+ - django-allauth: An integrated set of Django applications designed for authentication, registration, account management, and third-party (social) account authentication.
+ - django-crispy-forms: Offers a crispy filter and `{% crispy %}` tag for elegant and DRY (Don't Repeat Yourself) rendering of Django forms.
+ - psycopg2: An adapter for the Python programming language that facilitates interaction with PostgreSQL databases.
+ - coverage: This package generates a coverage report for automated testing, aiding in testing effectiveness assessment.
+
+- Frameworks & Tools
+
+Here's a rundown of the key tools and platforms utilized in this project:
+
+ - Django: Employed for establishing the website's backend logic and user model.
+ - Bootstrap: Woven into the site's fabric, it contributes to responsiveness, layout, and predefined style elements.
+ - CodeAnywhere: Utilized for coding and development tasks, including writing, committing, and pushing code to GitHub.
+ - GitHub: Serves as the host for the website's source code. It also records the Agile development framework implementation, incorporating issues, milestones, and projects.
+ - ElephantSQL: Used as the Postgres database.
+ - Heroku: Used for deploying the live version of the website.
+ - Cloudinary: Acts as a cloud storage solution for website media and static files. It also offers media manipulation and optimization features.
+ - Balsamiq: Chosen for creating project wireframes.
+ - Gmail: used to create an email address to send password reset emails from.
+ - Google Dev Tools - to troubleshoot and test features, solve issues with responsiveness and styling.
+ - [Am I Responsive?](http://ami.responsivedesign.is/) - to show the website image on a range of devices.
+ - Google Fonts: Imports fonts to enhance the website's typography.
+ - Font Awesome: Provides the necessary icons across the site.
+ - LOGO: Provides the necessary official logo across the site.
+ - Coolors: Provides the color palette across the site.
