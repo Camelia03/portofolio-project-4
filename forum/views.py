@@ -1,9 +1,8 @@
-from typing import Any, Dict
-from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Thread, Upvote, Downvote, Channel
 from django.views import View
-from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
+from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, \
+    CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -54,7 +53,7 @@ class Index(ListView):
 
         return threads.order_by(order_by)
 
-    def get_context_data(self, **kwargs: Any):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context['order_by'] = self.request.GET.get('order_by') or '-created_on'
@@ -201,7 +200,9 @@ def profile(request):
 @login_required
 def view_profile(request, username):
     profile_user = get_object_or_404(User, username=username)
-    return render(request, 'public_profile.html', {'public_user': profile_user})
+    return render(
+        request, 'public_profile.html', {'public_user': profile_user}
+    )
 
 
 @method_decorator(login_required, name='dispatch')
