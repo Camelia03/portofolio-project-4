@@ -90,3 +90,75 @@ class IndexAllViewTest(TestCase):
             response.context['channels'], Channel.objects.all()
         )
         self.assertContains(response, self.channel.name)
+
+
+class ChannelThreadsViewTest(TestCase):
+    """Test list threads cases when a channel is selected"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+
+    def setUp(self):
+        self.client.login(
+            username=self.user.username,
+            password=user_password
+        )
+
+        channel = Channel.objects.create(
+            name="Test channel",
+            slug="test-channel"
+        )
+        channel.save()
+
+        for i in range(10):
+            thread = Thread.objects.create(
+                title="Test Thread",
+                content="Test Model",
+                user=self.user,
+                channel=channel
+            )
+            thread.save()
+
+        channel = Channel.objects.create(
+            name="Test channel 2",
+            slug="test-channel-2"
+        )
+        channel.save()
+
+        for i in range(5):
+            thread = Thread.objects.create(
+                title="Test Thread",
+                content="Test Model",
+                user=self.user,
+                channel=channel
+            )
+            thread.save()
+
+    def test_renders_correct_template(self):
+        """Test that the channel name appears in the correct template"""
+
+        channel = Channel.objects.get(id=1)
+
+        response = self.client.get(
+            reverse('channel_threads', kwargs={
+                    'name': channel.slug})
+        )
+
+        self.assertContains(response, channel.name, status_code=200)
+        self.assertTemplateUsed(response, "index.html")
+
+    def test_only_channel_threads_shown(self):
+        """Test that only the threads in the selected channel are shown"""
+
+        channel = Channel.objects.get(id=2)
+
+        response = self.client.get(
+            reverse('channel_threads', kwargs={
+                    'name': channel.slug})
+        )
+
+        self.assertQuerysetEqual(
+            response.context['thread_list'],
+            Thread.objects.filter(channel=channel).order_by('-created_on')
+        )
