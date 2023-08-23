@@ -4,6 +4,10 @@
 
 {% block content %}
 <div class="container-lg py-4">
-    <h1>Error 401! You need to be logged in. Log in here.</h1>
+    <h1>Oops! A Glitchy Greeting from Us - Error 401</h1>
+    <p>Whoops-a-daisy! It seems a tiny glitch tried to play hide-and-seek while you were exploring our platform, leading
+        to that pesky 401 error. Think of it as a digital "Oops, not so fast!", just a little detour to ensure you're in
+        the right place.</p>
+    <p>No sweat! Just try again. Log in <a href="{% url 'login' %}" class="text-blue text-bold">here</a></p>
 </div>
 {% endblock %}
