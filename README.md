@@ -14,6 +14,12 @@ GoGlobal stands as a Django-based social media application that enables users to
   * [Initial Project](#Initial-Project)
   * [User Stories](#User-Stories)
 
+* [Design](#Design)
+  * [Color Scheme](#Color-Scheme)
+  * [Typography](#Typography)
+  * [Wireframes](#Wireframes)
+  * [Features](#Features)
+
 
 ## User Experience (UX)
 
@@ -66,9 +72,433 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 | 3 | Channels           |47|Won't have|As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members|
 
 
+### Color Scheme
 
-        
+- `#E58C18` used as a primary color for buttons.
+- `#eca446` used for hovering primary-colored buttons.
+- `#004696` used as a secondary color for buttons, for navigation and footer, but also for small details such as: signup/login links, edit thread button, and total number of threads in a channel.
+- `#d2e4f9` used for hovering secondary colored buttons.
+- `#f9f9f9` used for cards as a background-color.
+- `#f9b1b1` used for the delete button.
+- `#f8dddd` used for hover the delete button.
+
+GoGlobal combines a range of colors that balance cool and warm tones, evoking a sense of harmony and diversity. 
+
+The whites and light blues contribute to a fresh and airy feel, while the darker navy blue and the pop of orange add depth and visual interest. The light gray acts as a bridge, offering a subtle transition between the more vibrant and muted colors.
+
+
+![GoGlobal Color Palette](/static/media/goglobal_color_palette.png)
+The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 
 
+![GoGlobal's logo Color Pallete](/static/media/logo_palette.pngpng)
+The logo was created using the [LOGO](https://app.logo.com/) website.
+
+### Typography
+
+Google Fonts was used for the following fonts:
+
+* Black Ops One is used for the logo of GoGlobal. It is sans-serif font.
+* Lato is used for the body text on the website. It is a sans-serif font. 
+
+- [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer, upvote and downvote button, replies and channels.
+
+
+
+### Wireframes
+
+I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes for mobile and desktop.
+
+
+### Sign In Page
+
+<details>
+<summary>View Sign In Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/LogIn%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/LogIn%20mobile%20version.png)
+
+</details>
+
+### Sign Up Page
+
+<details>
+<summary>View Sign Up Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Sign%20Up%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Sign%20Up%20mobile%20version%20.png)
+
+</details>
+
+### All threads Page
+
+<details>
+<summary>View All threads Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/All%20threads%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/All%20threads%20mobile%20version.png)
+
+</details>
+
+### Channels Page
+
+<details>
+<summary>View Channels Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Channels%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Channels%20mobile%20version.png)
+
+</details>
+
+### Add a new Thread Page
+
+<details>
+<summary>View Add a new Thread Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Add%20a%20new%20thread%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Add%20a%20new%20thread%20mobile%20version.png)
+
+</details>
+
+### Edit Thread Page
+
+<details>
+<summary>View Edit thread Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Edit%20your%20thread%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Edit%20your%20thread%20mobile%20version.png)
+
+</details>
+
+
+### My threads Page
+
+<details>
+<summary>View My threads Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/My%20threads%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/My%20threads%20mobile%20version.png)
+
+</details>
+
+### Other user's profile Page
+
+<details>
+<summary>View Other user's profile Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Other%20user's%20profile%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Other%20user's%20profile%20mobile%20version.png)
+
+</details>
+
+### Search Threads Page
+
+<details>
+<summary>View Search Threads Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Search%20threads%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Search%20threads%20mobile%20version.png)
+
+</details>
+
+### Thread Details Page
+
+<details>
+<summary>View Thread Details Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Thread%20details%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Thread%20details%20mobile%20version.png)
+
+</details>
+
+
+### My Profile Page
+
+<details>
+<summary>View My Profile Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/User%20profile%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/User%20profile%20mobile%20version.png)
+
+</details>
+
+
+### Features
+
+### Existing Features
+
+- **Header and Navigation**
+
+    - The navigation bar features a logo, the page's name, and links tailored for both unauthenticated and authenticated users. 
+        - The nav bar contains everything the user will need to navigate the site. The site logo always appears on the site menu with the other items only showing for logged in users. 
+
+        - For the unauthenticated users, the navbar only shows the authentication pages(Register, Login and Home-which brings them back to the landing page).
+
+        - For authenticated users, the nav bar hides the authentication pages and shows only a search bar, a dropdown menu for user's profile and the logo. From the dropdown menu for user's profile, the user can go to their profile page(for editing their profile), to their threads(for editing or delete their threads) or to simply log out.
+
+- **Default navbar for unregistered user**
+
+    ![screenshot](docs/testing/nav_unreg_user.png)
+
+- **Navbar for registered user**
+
+    ![screenshot](docs/testing/nav_reg_user.png)
+
+- **Navbar on mobile**
+
+    ![screenshot](docs/testing/mobile_nav.png)
+
+- **Navbar expanded on mobile**
+
+    ![screenshot](docs/testing/nav_channels_expanded_mobile.png)
+
+- **Navbar expanded dropdown menu**
+
+    ![screenshot](docs/testing/nav_expanded_dropdown_mobile.png)
+
+
+- **Landing or Log In Page**
+
+    - This page is where users arrive when they first visit the site or before they log in if they don't have an active session. It greets them and provides the choice to either create a new account or access an existing one.
+
+      - Also here, users with accounts can log in using their username or email and password.
+      - The page also provides a sign-up link for those looking to create an account. 
+      - If a user forgets their password, there's a link to reset it.
+
+    ![screenshot](docs/testing/landing_page.png)
+
+
+- **Sign Up Page**
+
+    - This is where users can set up an account by inputting their email, preferred username, and password (repeated for confirmation). If users arrive here unintentionally, instead of the login page, they can find their way to the appropriate page through the provided link.
+
+    ![screenshot](docs/testing/signup_page.png)
+
+- **Reset Password**
+
+    - Users who forget their password can initiate a reset by entering the email they used for signing up. An email will be sent containing a link to establish a new password.
+
+    ![screenshot](docs/testing/forgot_password_confirmation.png)
+
+    ![screenshot](docs/testing/forgot_password_confirmation.png)
+
+    ![screenshot](docs/testing/password_reset.png)
+
+    ![screenshot](docs/testing/password_reset_confirmation.png)
+
+- **Footer**
+
+    - The footer appears across the website and includes information about me as the developer with links to social media and GitHub pages. This lets the user get to know me as the developer and connect on these platforms if they wish.
+
+    ![screenshot](docs/testing/footer.png)
+
+- **Add Thread Form**
+
+    - This is the space where users can generate their threads. It is accessible on both the home page and when selecting a channel from the sidebar. It requires you to choose a channel where you wish your thread to be, provide a title, write your content, and optionally include an image to better convey your message.
+
+    ![screenshot](docs/testing/add_new_thread.png)
+
+- **Channels**
+
+    - This is the space where users can explore the channels feature, present on both the home page(for mobile) and the sidebar when navigating. It invites users to select a channel that best matches their discussion topic. This categorization enhances content organization and focuses discussions. Whether initiating a thread from the home page or within a selected channel, this feature ensures a smooth user experience, promoting relevant and engaging interactions.
+
+  - **Channels-sidebar-desktop**
+    ![screenshot](docs/testing/home_page_desktop.png)
+
+  - **Channels-homepage-mobile**
+    ![screenshot](docs/testing/home_page_mobile.png)
+
+  - **Channels-expanded-desktop**
+    ![screenshot](docs/testing/channels_expanded_desktop.png)
+
+  - **Channels-expanded-mobile**
+    ![screenshot](docs/testing/channels_expanded_mobile.png)
+
+- **Order by**
+
+    - This is where users can customize content organization on the home page and channels page. The "Order By" menu empowers users to personalize how content is displayed, ensuring a tailored browsing experience.
+    
+  - **Order-by-desktop**
+    ![screenshot](docs/testing/order_by_desktop.jpg)
+
+  - **Order-by-mobile**
+    ![screenshot](docs/testing/order_by_mobile.jpg)
+
+- **Pagination**
+
+    - The pagination feature divides content into manageable segments of 5 items per page. This design ensures smoother navigation through extensive content, providing users with a more focused and comprehensible browsing experience.
+    
+    ![screenshot](docs/testing/pagination.png)
+
+- **Home Page**
+
+    - Central to the site are user threads, showcased on the home page. Users can explore threads, choose channels, sort, and search. Essential thread data like reply count, upvotes, and downvotes are displayed under the "Read more" button for quick insights.
+
+  - **Home Page-desktop**
+    ![screenshot](docs/testing/home_page_desktop.png)
+
+  - **Home Page mobile**
+    ![screenshot](docs/testing/home_page_mobile.png)
+
+- **My Profile Page**
+
+    - My profile page presents a warm welcome message upon entry, along with the user's email address prominently displayed. Additionally, an "About Me" section offers insights about user's persona. To facilitate personalization, an "Edit Profile" button grants the authenticated user control over their displayed information.
+
+    ![screenshot](docs/testing/my_profile.png)
+
+- **Edit Profile**
+
+    - The "Edit Profile" section provides a comprehensive form for users. It features fields for updating the username, selecting or modifying the profile image, and editing the "About Me" section. Users have the options to save their changes or cancel the process, conveniently accessible through corresponding buttons. Once changes are submitted, a success message confirms the successful update.
+
+    ![screenshot](docs/testing/edit_profile.png)
+
+- **My threads Page**
+
+    - The "My Threads" page offers users a consolidated view of all their threads. This page showcases relevant buttons such as "Read More," "Edit Thread," and "Delete Thread" for each entry. These buttons empower users to access the complete thread content, make edits, or remove threads as needed.
+
+    ![screenshot](docs/testing/my_threads_desktop.png)
+
+- **Read more/ Thread Details**
+
+    - The "Read More" button directs users to the thread details page, offering an immersive experience. Here, users encounter the entire post, enriched with context. The channel to which it belongs, its title, creation timestamp, author's name, and profile picture contribute to the comprehensive view. Additionally, the thread's associated image, content, but also the counted upvotes, and downvotes are prominently displayed.
+    - To encourage engagement, a dedicated section enables users to leave a reply, fostering dynamic discussions.Following this, a "Replies" section presents the users's names and their replies, creating a comprehensive space for discussions. 
+
+ - **Read more/ Thread Details Page**
+    ![screenshot](docs/testing/thread_details.png)
+
+  - **Thread Details Page- replies section**
+    ![screenshot](docs/testing/replies.png)
+
+
+- **Edit Thread Page**
+
+    - "Edit Thread" presents a form for modifying threads. Users can choose a new channel, change the title, content, and image. The options to save or cancel changes are presented through buttons. Upon submitting changes, a success message confirms the update's completion.
+
+    ![screenshot](docs/testing/edit_thread.png)
+
+- **Delete Thread**
+
+    - Users can delete their threads by clicking the delete button. A confirmation window appears to prevent accidental deletions. If users change their minds, a button takes them back to the post. For thread deletions, a successful action message is displayed after the process is completed.
+
+    ![screenshot](docs/testing/delete_thread.png)
+
+- **Replies**
+
+    - Replies appear beneath threads. The replies authors and threads authors have the ability to delete their replies, while replies authors can edit their replies as well. 
+
+    ![screenshot](docs/testing/replies.png)
+
+
+- **Edit reply**
+
+    - Reply authors can edit their replies. Clicking the edit icon takes them to a page where they can make changes and save. If they edit by mistake, a button brings them back to the post.
+
+    ![screenshot]()
+
+
+- **Delete reply**
+
+    - The replies can be deleted by both the reply's author or the thread's author using the delete icon. To prevent accidental deletions, a confirmation page appears. Users can return to the thread they replied on using a button if they change their mind about deleting the reply.
+
+    ![screenshot]()
+
+- **Other user's Profile**
+
+    - Clicking the thread author's name reveals their profile. This page shows their name, email, and "About Me" section for better communication. You can also view their threads with full details on their profile.
+
+    ![screenshot](docs/testing/other_users_profile.png)
+
+
+- **Search**
+
+    - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords or phrases, and it expertly guides them to threads that match their interests. Even if no results are found for a specific keyword, the search bar ensures the user informed, allowing them to refine their search or explore other topics.
+
+    ![screenshot](docs/testing/search_results.png)
+    ![screenshot](docs/testing/no_search_results.png)
+
+
+- **Logout**
+
+    - To conclude their session and log out, users can do so conveniently from the My Profile dropdown menu. When the logout button is clicked, a confirmation page appears, ensuring the user's intention. Upon confirming, clicking the confirmation button redirects users to the landing page, accompanied by a confirmation message that acknowledges their successful logout.
+
+    ![screenshot]()
+
+
+- **Admin Panel**
+
+    - The admin panel is exclusively accessible via Django's backend by adding "/admin" to the end of the website's URL. Admins hold the authority to determine whether a post should be deleted.
+
+    ![screenshot]()
+
+
+- **Error Pages**
+
+    - If a user reaches a page that doesn't exist or isn't allowed (like a regular user trying to access the admin panel or deleting others' posts), they'll see an error page. It has a button to take them back to their feed.
+
+    ![screenshot]()
+
+    ![screenshot]()
+
+    ![screenshot]()
+
+
+### Future Features
+
+- Reply to a reply
+    - Registered users will have the ability to respond to replies on the communication platform. This empowers them to actively participate in discussions, express their viewpoints, and engage with others within the community.
+
+- Delete threads and replies as an admin
+    - Admin will have the authority to delete threads and replies authored by other users. This capability enables them to manage and update the site's content effectively.
+
+- Emoji button
+    - Registered users will be able to utilize an emoji button while replying to threads. This allows them to convey their thoughts more vividly and accurately.
+
+- Notifications
+    - Registered users will be able to receive notifications for replies, upvotes, and downvotes on their threads. This keeps them informed about interactions and engagement with their content within the communication platform.
+
+- Follow other users
+    - Registered users will have the option to follow other users on the platform. This ensures they receive updates about their activities, threads, and contributions.
+
+- Join channels as a member
+    - Registered users will have the ability to join channels as members. This grants them access to discussions, information, and opportunities for collaboration within the chosen channel.
+
+- Roles within a channel
+    - Registered users will have the capability to be assigned specific roles within a channel. This feature empowers users to take on moderation responsibilities, ensuring the channel's activities run smoothly. 
+
+- Allow users to create their own channels
+    - Registered users will be able to create personalized channels on the platform. This enables them to start discussions, share content, and connect with like-minded individuals who have similar interests.
 
