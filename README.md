@@ -24,6 +24,11 @@ GoGlobal stands as a Django-based social media application that enables users to
   * [Languages Used](#Languages-Used)
   * [Frameworks, Libraries & Programs Used](#Frameworks,-Libraries-&-Programs-Used)
 
+* [Database Design](#Database-Design)
+  * [Relationship Diagram](#Relationship-Diagram)
+  * [Models](#Models)
+
+
 
 ## User Experience (UX)
 
@@ -549,3 +554,91 @@ Here's a rundown of the key tools and platforms utilized in this project:
  - Font Awesome: Provides the necessary icons across the site.
  - LOGO: Provides the necessary official logo across the site.
  - Coolors: Provides the color palette across the site.
+
+## Database Design
+By creating an entity relationship diagram, I gained a clear picture of how my data structures interconnect. This approach greatly facilitated the development process by providing a consolidated reference point, sparing me the need to navigate through individual models.py files for guidance.
+
+### Relationship Diagram
+
+![screenshot](docs/database_diagram.jpg)
+
+To create the databse diagram, I used [PyCharm](https://www.jetbrains.com/pycharm/) which helped me generate it automatically.
+
+ ### Models
+
+The following are the models created for GoGlobal.
+
+- **Allauth User Model**
+    - The User model was built using [Django's Allauth library](https://django-allauth.readthedocs.io/en/latest/overview.html)
+    - When a user is created, they're automatically assigned a profile through the Profile model.
+
+- **Profile**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- |
+    |  id | Integer | PK |
+    | user | OneToOne | FK to **User** model |
+    | about | TextField | |
+    | avatar | CloudinaryField | |
+
+
+- **Thread**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- |
+    |  id    | Integer | PK |
+    | user | ForeignKey | FK to **User** model |
+    | title | CharField |  |
+    | content | TextField | |
+    | created_on | DateTimeField | |
+    | image | CloudinaryField | |
+    | edited_on | DateTimeField | |
+    | channels | ForeignKey | FK to **Channel** model |
+
+
+- **Reply**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- |
+    |  id    | Integer | PK |
+    | thread | ForeignKey | FK to **Thread** model |
+    | user | ForeignKey   | FK to **User** model   |
+    | content | TextField | 
+    | created_on | DateTimeField |  
+
+
+- **Upvote**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- | 
+    |  id    | Integer | PK |
+    | thread | ForeignKey | FK to **Thread** model |
+    | user | ForeignKey   | FK to **User** model   |
+    | created_on | DateTimeField |  
+
+    - unique constraint on **thread** and **user**
+
+
+- **Downvote**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- |
+    |  id    | Integer | PK | 
+    | thread | ForeignKey | FK to **Thread** model |
+    | user | ForeignKey   | FK to **User** model   |
+    | created_on | DateTimeField |  
+
+    - unique constraint on **thread** and **user**
+
+
+- **Channels**
+
+    | **Field** | Type | Notes |
+    | --------- | ---- | ----- |
+    |  id    | Integer | PK |
+    | name | CharField |  
+    | image | CloudinaryField | 
+    | icon | CharField |  
+    | slug | SlugField |  
+
+
