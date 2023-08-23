@@ -28,6 +28,11 @@ GoGlobal stands as a Django-based social media application that enables users to
   * [Relationship Diagram](#Relationship-Diagram)
   * [Models](#Models)
 
+* [Agile Development Process](#Agile-Development-Process)
+  *[GitHub Projects](#GitHub-Projects)
+  *[GitHub Issues](#GitHub-Issues)
+  *[Moscow Prioritization](Moscow-Prioritization)
+
 
 
 ## User Experience (UX)
@@ -642,3 +647,42 @@ The following are the models created for GoGlobal.
     | slug | SlugField |  
 
 
+## Agile Development Process
+
+### GitHub Projects
+ The project's development was coordinated using GitHub's issues, milestones, and projects features. [GitHub Projects](https://github.com/Camelia03/portofolio-project-4/projects) served as an Agile tool, adapted effectively with appropriate tags and issue assignments.
+
+
+This approach utilized user stories and a basic Kanban board. It helped me manage tasks, track progress, and smoothly move through development, testing, and completion phases.
+
+![screenshot](docs/goglobal_project_board.png)
+
+### GitHub Issues
+
+GitHub Issues served as an additional Agile tool. Within this context, I utilized my own User Story Template to manage user stories. To enhance issue organization and streamline workflows, I created an "EPIC" tag for effectively categorizing and addressing issues on the site.
+
+- [Epics](https://github.com/users/Camelia03/projects/6/views/2)
+    ![screenshot](docs/epics_board.png)
+
+- [Open Issues](https://github.com/Camelia03/portofolio-project-4/issues)
+
+    ![screenshot](docs/open_issues.png)
+
+- [Closed Issues](https://github.com/Camelia03/portofolio-project-4/issues?q=is%3Aissue+is%3Aclosed)
+
+    ![screenshot](docs/closed_issues.png)
+
+
+### MoSCoW Prioritization
+
+This technique proves valuable for my project helping me to prioritize product features.
+Before implementing my Epics, I broke them down into individual stories.
+By following this method, I could then apply MoSCoW prioritization and labels for my user stories directly in the Issues tab.
+
+
+|                  |       |      |      |
+| ---------------- | ----- | ---- | ---- |
+|  **Must Have** | *max 60% of stories* | guaranteed to be delivered | These are the core features that are vital for the initial release.|
+|  **Should Have** | *aprox.20% of stories* | adds significant value, but not vital | These features are important and should be prioritized, but the project can proceed without them.|
+|  **Could Have** | *20% of stories* | has small impact if left out | These features provide added value and are desirable, but they are not essential for the current release.|
+|  **Won't Have** |  | not a priority | These are features that have been deliberately deferred to a later phase or release.|
