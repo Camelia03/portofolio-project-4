@@ -204,3 +204,38 @@ class ThreadDetailViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, "404.html")
+
+
+class UnauthorizedViewsTest(TestCase):
+    """Test that all views that require authentication redirect to login"""
+
+    def setUp(self):
+        pass
+
+    def test_index_requires_login(self):
+        """Test that the index path redirects to login"""
+
+        response = self.client.get(reverse('index'))
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_channel_threads_requires_login(self):
+        """Test that the index path redirects to login"""
+
+        response = self.client.get(
+            reverse('channel_threads', kwargs={'name': 'test'})
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_thread_detail_requires_login(self):
+        """Test that the thread detail path redirects to login"""
+
+        response = self.client.get(
+            reverse('thread_detail', kwargs={'pk': '1'})
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
