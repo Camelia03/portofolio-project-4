@@ -35,6 +35,13 @@ GoGlobal stands as a Django-based social media application that enables users to
 
 * [Testing](#Testing)
 
+* [Deployment & Development](#Deployment-&-Development)
+    * [Deploy on Heroku](#Deploy-on-Heroku)
+     * [Database Setup](#Database-Setup)
+    * [Development](#Development)
+
+
+
 
 ## User Experience (UX)
 
@@ -693,3 +700,93 @@ By following this method, I could then apply MoSCoW prioritization and labels fo
 ## Testing
 
 The testing documentation can be found at [TESTING.md](TESTING.md).
+
+## Deployment & Development
+
+### Deploy on Heroku
+
+**Creating a Heroku App**
+
+- Log into Heroku and access the Dashboard.
+- Click "New" and select "Create new app".
+- Give the app a name and choose the closest region.
+- Confirm by clicking "Create app".
+
+**Requirement and Procfile Setup**
+Heroku needs two additional files in order to deploy properly.
+- requirements.txt
+- Procfile
+
+- If you have your own packages that have been installed, then the requirements file needs updated using:
+ `pip3 freeze --local > requirements.txt`
+
+- Creating the Procfile is as simple as using this command:
+ `echo web: gunicorn app_name.wsgi > Procfile`
+- Remember to replace *app_name* with your primary Django app's name; the one where settings.py is located.
+
+For deploying on Heroku, follow these steps to connect your GitHub repository with the new app:
+
+**Option 1:**
+Choose *Automatic Deployment* within the Heroku app interface.
+
+**Option 2:**
+
+- Open Terminal/CLI and connect to Heroku: heroku login -i
+- Set the Heroku remote: heroku git:remote -a app_name (replace app_name with your app's name)
+- After standard Git commands like add, commit, and push to GitHub, use:
+`git push heroku main`
+- Your project is now connected and deployed on Heroku!
+
+
+**Setting Environment Variables**
+
+ - Select the app and navigate to the "Settings" tab on the Heroku Dashboard.
+ - Click the "Reveal Config Vars" button
+ - Add the following config vars: 
+
+`DATABASE_URL - copy the database URL from ElephantSQL and env.py.`
+
+`SECRET_KEY - paste your secret key. `
+
+- If using Cloudinary storage, add your CLOUDINARY_URL here, followed by CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET and CLOUDINARY_CLOUD_NAME.
+
+- You may also need the key PORT with value 8000.
+
+- For email features you may need also the EMAIL_HOST_USER and EMAIL_HOST_PASSWORD keys here.
+
+**Connecting to GitHub and Deployment**
+
+ - On Heroku Dashboard, select the app and go to the "Deploy" tab.
+ - Choose GitHub for deployment method.
+ - Search and connect to your project repository.
+ - Opt for "Enable Automatic Deploys" if desired.
+ - Deploy your app by selecting "Deploy Branch" to observe the app building.
+
+### Database Setup
+
+- Log into ElephantSQL.com and access your dashboard.
+- Click "Create New Instance".
+- Configure a plan, set a Name, choose the Tiny Turtle (Free) plan, and leave the Tags field empty.
+- Pick a data center near you under "Select Region".
+- Review your settings and click "Create instance".
+- Return to the ElephantSQL dashboard and click on the instance name for your project.
+- In the URL section, click the copy icon to copy the database URL.
+- In your workspace, ensure you have Django and Gunicorn installed using `pip3 install 'django<4' gunicorn`
+- Also, make sure to install infrastructure for the database with `pip3 install dj_database_url===0.5.0 psycopg2`
+- Update the requirements.txt file if necessary.
+
+### Development
+
+**Local Clone**
+
+1. Log in to GitHub and find the repository you wish to clone.
+2. Locate the Code button above the list of files and click it 
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Launch Git Bash within your IDE.
+5. Navigate to the desired directory using the CLI.
+6. Enter `git clone` followed by the copied URL. For example:
+`$ git clone https://github.com/`
+7. Press Enter to initiate the local clone.
+
+Don't forget to install all the packages specified in the requirements file. This can be achieved by using the following terminal command: `pip install -r requirements.txt` This command automatically installs the required packages for you.
+
