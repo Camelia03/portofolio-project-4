@@ -33,6 +33,7 @@ GoGlobal stands as a Django-based social media application that enables users to
   *[GitHub Issues](#GitHub-Issues)
   *[Moscow Prioritization](Moscow-Prioritization)
 
+* [Testing](#Testing)
 
 
 ## User Experience (UX)
@@ -686,3 +687,9 @@ By following this method, I could then apply MoSCoW prioritization and labels fo
 |  **Should Have** | *aprox.20% of stories* | adds significant value, but not vital | These features are important and should be prioritized, but the project can proceed without them.|
 |  **Could Have** | *20% of stories* | has small impact if left out | These features provide added value and are desirable, but they are not essential for the current release.|
 |  **Won't Have** |  | not a priority | These are features that have been deliberately deferred to a later phase or release.|
+
+
+
+## Testing
+
+The testing documentation can be found at [TESTING.md](TESTING.md).
