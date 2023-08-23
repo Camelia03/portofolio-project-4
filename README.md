@@ -29,9 +29,9 @@ GoGlobal stands as a Django-based social media application that enables users to
   * [Models](#Models)
 
 * [Agile Development Process](#Agile-Development-Process)
-  *[GitHub Projects](#GitHub-Projects)
-  *[GitHub Issues](#GitHub-Issues)
-  *[Moscow Prioritization](Moscow-Prioritization)
+  * [GitHub Projects](#GitHub-Projects)
+  * [GitHub Issues](#GitHub-Issues)
+  * [Moscow Prioritization](Moscow-Prioritization)
 
 * [Testing](#Testing)
 
@@ -39,6 +39,11 @@ GoGlobal stands as a Django-based social media application that enables users to
     * [Deploy on Heroku](#Deploy-on-Heroku)
      * [Database Setup](#Database-Setup)
     * [Development](#Development)
+
+* [ Credits](#Credits)
+    * [Code](#Code)
+    * [Media](#Media)
+    * [Acknowledgements](#Acknowledgements)
 
 
 
@@ -790,3 +795,50 @@ Choose *Automatic Deployment* within the Heroku app interface.
 
 Don't forget to install all the packages specified in the requirements file. This can be achieved by using the following terminal command: `pip install -r requirements.txt` This command automatically installs the required packages for you.
 
+
+
+### Credits
+## Code
+While working on the project, I frequently referred to the following websites for troubleshooting:  
+
+- [W3 Schools](https://www.w3schools.com)
+- [Stack Overflow](https://stackoverflow.com)
+- [MDN web docs](https://developer.mozilla.org)
+- [Django documentation](https://docs.djangoproject.com/en/4.2/)
+
+- [Dev Handbook](https://www.devhandbook.com/django/user-profile/) - for creating a user profile that extends Django's User model
+
+- [Code Institute](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+EA101+2021_T1/courseware/eb05f06e62c64ac89823cc956fcd8191/39dfbd4ba6ac42168b5df88d69c32f02/)- for password reset email
+
+- [Code Institute](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/b31493372e764469823578613d11036b/c6a89f138afe4b209ee4fa6d6f1251a3/?child=first) - for pagination & inbox layout 
+
+- [Django Docs](https://docs.djangoproject.com/en/4.1/topics/auth/default/) - for only logged in users can access main site
+
+- [Django Docs](https://learndjango.com/tutorials/django-password-reset-tutorial) - for password reset tutorial
+
+- [Django Docs](https://learndjango.com/tutorials/django-login-and-logout-tutorial) - for the login and logout tutorial
+
+- [Dev Community](https://dev.to/earthcomfy/django-user-profile-3hik) - for user profile
+
+- [Geeks for Geeks](https://www.geeksforgeeks.org/django-templates/?ref=lbp) - for django templates
+
+- [Abstractapi](https://www.abstractapi.com/guides/django-send-email#:~:text=In%20order%20to%20send%20emails,and%20generate%20an%20app%20password) - how to send email with Django
+
+## Media
+
+All media files on the webiste, except one, were taken from [Pixabay](https://pixabay.com/)
+
+The image from the *Q&As* Channel was taken from [Pexels](pexels.com)
+
+To create a favicon I used [Favicon](https://favicon.io/)
+
+Throughout the site, I used icons, such as the social media icons in the footer, upvote and downvote button, replies and channels from [Font Awesome](https://fontawesome.com).
+
+
+## Acknowledgements
+
+- I extend my gratitude to my mentor Jubril Akolade, whose feedback, advice, guidance, and support significantly enriched this project and the preceding three.
+- The Code Institute Slack community deserves recognition for providing unwavering encouragement during moments of self-doubt and imposter syndrome.
+- A heartfelt thanks to my parents for their constant encouragement and support throughout this journey.
+- The tutors at tutor support, though rarely contacted during this project, consistently showcased swift and effective resolution of issues when needed.
+- Lastly, I appreciate my husband, Mihai, for his continuous support and unwavering belief throughout the course and project journey.
