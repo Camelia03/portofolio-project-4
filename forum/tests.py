@@ -303,6 +303,64 @@ class ThreadAddViewTest(TestCase):
         )
 
 
+class ThreadSearchViewTest(TestCase):
+    """Test that the search view work correctly"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        channel = create_test_channel()
+
+        for i in range(10):
+            thread = Thread.objects.create(
+                title='Test Thread ${i} Batch1',
+                content="Test content",
+                user=self.user,
+                channel=channel
+            )
+            thread.save()
+
+        channel = Channel.objects.create(
+            name="Test channel 2",
+            slug="test-channel-2"
+        )
+        channel.save()
+
+        for i in range(5):
+            thread = Thread.objects.create(
+                title=f'Test Thread ${i} Batch2',
+                content="Test content",
+                user=self.user,
+                channel=channel
+            )
+            thread.save()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_renders_correct_template(self):
+        response = self.client.get(reverse('thread_search'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'search.html')
+
+    def test_bad_search_returns_nothing(self):
+        response = self.client.get(reverse('thread_search') + '?keyword=wrong')
+
+        self.assertQuerysetEqual(response.context['threads'], [])
+        self.assertContains(response, '0 Results')
+
+    def test_bad_search_returns_correct_threads(self):
+        response = self.client.get(
+            reverse('thread_search') + '?keyword=batch2')
+
+        self.assertQuerysetEqual(
+            response.context['threads'],
+            Thread.objects.filter(title__icontains='batch2')
+        )
+        self.assertContains(response, '5 Results')
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
