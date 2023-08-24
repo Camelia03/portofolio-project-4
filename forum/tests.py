@@ -361,6 +361,81 @@ class ThreadSearchViewTest(TestCase):
         self.assertContains(response, '5 Results')
 
 
+class ThreadEditViewTest(TestCase):
+    """Test that the edit thread view work correctly"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+        self.thread = Thread.objects.create(
+            title='Test Thread',
+            content="Test content",
+            user=self.user,
+            channel=self.channel
+        )
+        self.thread.save()
+
+    def test_renders_correct_template(self):
+        """Test that the edit thread form is rendered correctly"""
+
+        response = self.client.get(reverse('thread_edit', kwargs={'pk': 1}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'thread_edit.html')
+
+    def test_thread_can_be_edited(self):
+        """Test that the thread can be edited"""
+
+        new_title = 'Different title'
+
+        response = self.client.post(
+            reverse('thread_edit', kwargs={'pk': 1}),
+            {
+                'title': new_title,
+                'content': self.thread.content,
+                'channel': self.channel.id
+            }
+        )
+
+        thread = Thread.objects.get(title=new_title)
+
+        self.assertEqual(thread.title, new_title)
+        self.assertRedirects(
+            response, reverse('thread_detail', kwargs={'pk': self.thread.id})
+        )
+
+    def test_404_is_returned_for_wrong_thread(self):
+        """Test that 404 is shown when trying to edit a wrong thread"""
+
+        response = self.client.get(reverse('thread_edit', kwargs={'pk': 100}))
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_user_can_only_edit_own_threads(self):
+        """Test that a user can only edit his threads"""
+
+        other_user = User.objects.create_user(
+            username='otheruser', password='password'
+        )
+        other_user.save()
+
+        other_thread = Thread.objects.create(
+            title='Test Thread',
+            content="Test content",
+            user=other_user,
+            channel=self.channel
+        )
+        other_thread.save()
+
+        response = self.client.get(reverse('thread_edit', kwargs={'pk': 2}))
+
+        self.assertEqual(response.status_code, 403)
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
