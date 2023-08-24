@@ -35,4 +35,5 @@ urlpatterns = [
          name='thread_delete'),
 
     path('reply/delete', views.ReplyDelete.as_view(), name='reply_delete'),
+    path('reply/<int:pk>/edit', views.ReplyEdit.as_view(), name='reply_edit'),
 ]

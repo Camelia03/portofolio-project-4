@@ -100,6 +100,7 @@
                         data-bs-target="#deleteConfirmModal" data-bs-reply-id="{{ reply.id }}">
                         Delete Reply
                     </button>
+                    <a href="{% url 'reply_edit' reply.id%}" class="btn forum-btn-secondary">Edit Reply</a>
                     {% endif %}
                 </div>
             </div>

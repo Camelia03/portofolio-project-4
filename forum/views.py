@@ -123,6 +123,25 @@ class ReplyDelete(View):
 
 
 @method_decorator(login_required, name='dispatch')
+class ReplyEdit(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    model = Reply
+    template_name = "reply_edit.html"
+    success_message = "Your reply has been edited successfully!"
+    fields = ['content']
+
+    # Check if the logged in user owns the reply
+
+    def test_func(self):
+        reply = self.get_object()
+        return self.request.user.id == reply.user.id
+
+    def get_success_url(self):
+        # Customize the redirect URL
+        return reverse_lazy(
+            'thread_detail', kwargs={'pk': self.object.thread.id})
+
+
+@method_decorator(login_required, name='dispatch')
 class ThreadAdd(View):
     def get(self, request):
         form = ThreadForm()
