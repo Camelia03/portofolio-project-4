@@ -4,6 +4,8 @@
 
 {% load crispy_forms_tags %}
 
+{% load static %}
+
 {% include 'snippets/app_message.html' with messages=messages %}
 
 <div class="container-fluid">
@@ -11,6 +13,11 @@
     <div class="col-md-6 offset-md-3 mt-4">
       <div class="card shadow">
         <div class="card-body">
+          <div class="text-center">
+            <h1>Welcome to GoGlobal !</h1>
+            <h4>Let's stay connected!</h4>
+            <img src="{% static 'media/welcome.png' %}" alt="welcome image" class="welcome-image">
+          </div>
           <h2 class="mb-4 text-bold">Login</h2>
           <form method="POST">
             {% csrf_token %}

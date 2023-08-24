@@ -1,6 +1,6 @@
 body {
     background-color: #ffffff;
-    color: #000000;
+    color: #040404;
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -141,6 +141,10 @@ footer {
     height: 200px;
     background-size: cover;
     background-position: center center;
+}
+
+.welcome-image {
+    width: 50%;
 }
 
 .list-group .list-group-item:hover {
