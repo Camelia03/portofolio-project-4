@@ -14,6 +14,9 @@ Return back to the [README.md](README.md) file.
 
 * [MANUAL TESTING](#MANUAL-TESTING)
   * [Testing User Stories](#Testing-User-Stories)
+  * [Test cases](#Test-cases)
+
+* [BUGS](#BUGS)
 
 
 
@@ -663,3 +666,76 @@ Listed below are **user stories** that I couldn't successfully implement, design
 - - -
 
 
+
+### Test cases
+
+Feature | Expected Outcome | Testing Performed | Result | Pass/Fail |
+| --- | --- | --- | --- | --- |
+| `Navbar` |
+| Site logo | Redirects to the home page | Click logo |  Redirects to home page | Pass |
+| Home Link | Redirects to home page | Click home link | Redirects to home page | Pass |
+| Login Link (user not logged in) | Redirect to Login page | Click log in link | Redirected to log in page | Pass |
+| Sign up Link (user not logged in)  | Redirect to Sign up page | Click sign up link | Redirected to sign up page | Pass |
+| Admin View | Redirects to the admin view page | url + `/admin` | Redirected to admin view page | Pass |
+| Logout link (user logged in) | User will be logged out | Click log out link| Redirected to login page | Pass |
+| `Login Page` |
+| Form - link to sign up page | Redirects user to sign in page | Click link | Redirected to sign up page | Pass |
+| Form - Submission with no information | User prompted to fill in information | clicked submit button with no fields filled out | Form highlighted first empty field | Pass |
+| `Signup Page` |
+| Form - Submission with no information | User prompted to fill in information | clicked submit button with no fields filled out | Form highlighted first empty field | Pass |
+| `Home Page` |
+| View threads button | Redirects to the threads page | Click button | Redirected to the thread | Pass |
+| Add a new thread button | Redirects to the form to create new thread | Click button | Redirected to create a new thread | Pass |
+| Channels Link | Redirects to one of the channels page | Click button | Redirected to the channels page | Pass |
+| Search button | User prompted to fill in a keyword | Click button | Redirected to the results page | Pass |
+| Order by dropdown button | User prompted to select an option | Click button | Redirected to the home page with ordered threads | Pass |
+| `My Profile Page` |
+| My Profile Link | Redirects to the (logged in) user's profile page | Click button | Redirected to the user's profile page | Pass |
+| Edit Profile button | Redirects to edit form for user's profile page | Click button | Redirected to the edit user's profile page | Pass |
+| `My Threads Page` |
+| My Threads Link | Redirects to the (logged in) user's threads page | Click button | Redirected to the user's threads page | Pass |
+| Read more button | Redirects to the (logged in) user's thread details page | Click button | Redirected to the user's thread details page | Pass |
+| Edit button | Redirects to the (logged in) user's existing thread form to edit page | Click button | Redirected to the user's existing thread form page | Pass |
+| Delete button | Modal popup to delete thread | Click button | Redirected to the (logged in) user's thread page | Pass |
+| `Channels Page` |
+| A channel Link | Redirects to the (selected) channel page | Click button | Redirected to (selected) channel page | Pass |
+| `Upvote button` |
+| Upvote button | Increases the number of upvotes | Click button | Increased the number of upvotes | Pass |
+| `Downvote button` |
+| Dowvote button | Decreases the number of upvotes | Click button | Decreased the number of upvotes | Pass |
+| `Replies` |
+| Submit button | Submits the content wrote as a reply | Click button | Submitted the content wrote as a reply | Pass |
+| `Other user's Profile Page` |
+| Other user's Profile Link | Redirects to the (selected) user's profile page | Click button | Redirected to the (selected) user's profile page | Pass |
+| `404 Page` |
+| (User Logged in) Home Button | User will be redirected to the home page | Click home button | Redirected to the home page | Pass |
+| (Guest User) Login Button | User redirected to the login page | Click login button | Redirected to the login page | Pass |
+| (Guest User) Sign Up Button | User redirected to the sign up page | Click sign up button | Redirected to sign up page | Pass |
+| `Footer` |
+| Camelia Weber link | Redirects user to the developer's GitHub page | Click link | Redirected to developer's GitHub page | Pass |
+| Footer - Social media links | Opens new tab to the social media site | Clicked each icon | New tabs opened for each site | Pass |
+
+
+
+## Bugs
+
+1. Tried adding the user field to a thread - However, I could not make a migration because the existing threads could not have a null user
+    - Fixed by setting a default user to all existing threads
+2. There was no success message after adding a new thread
+    - Fixed by using Django's built in messages system by showing them after any successful action
+3. On register page - Email field should not be the last one
+    - Fixed by changing the order of the fields in the form class
+4. There was a `div` inside an `a` tag in the my account dropdown navigation
+    - Fixed by converting the a in a div and convert to a Bootstrap dropdown
+5. After sorting threads by most popular, the pagination was breaking the sort.
+    - Fixed by making sure the order_by query parameter was preserved in the url when chaning the page
+6. The application would crash if no search keyword was given
+    - Fixed by checking if the keyword is set and if not return an empty list(Error 500)
+7. The application would crash if the user try to create a thread with a channel that did not exist(Error 500)
+    - Fixed by checking if the channel exists, if not showing the 404 error
+8. The success message is not shown after registering
+    - Fixed by setting a success message and showing it in the template using the Django messages feature
+
+- - -
+
+Back to [README.md](README.md)
