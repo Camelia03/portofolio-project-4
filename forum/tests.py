@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 
 
-from .models import Channel, Thread
+from .models import Channel, Downvote, Thread, Upvote
 
 user_password = 'password'
 
@@ -535,6 +535,80 @@ class UserThreadsViewTest(TestCase):
         self.assertQuerysetEqual(
             response.context['thread_list'],
             Thread.objects.filter(user=self.user).order_by('-created_on')
+        )
+
+
+class UpvoteThreadViewTest(TestCase):
+    """Test the upvote view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+
+        other_user = User.objects.create_user(
+            username='other_user', password='password'
+        )
+        other_user.save()
+
+        self.thread = Thread.objects.create(
+            title='Test Thread',
+            content="Test content",
+            user=other_user,
+            channel=self.channel
+        )
+        self.thread.save()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_upvote_thread(self):
+        """Test that a user can upvote a thread"""
+
+        response = self.client.post(reverse('upvote_thread', kwargs={'pk': 1}))
+        upvote = Upvote.objects.get(user=self.user, thread=self.thread)
+
+        self.assertIsNotNone(upvote)
+        self.assertRedirects(
+            response, reverse('thread_detail', kwargs={'pk': 1})
+        )
+
+
+class DownvoteThreadViewTest(TestCase):
+    """Test the downvote view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+
+        other_user = User.objects.create_user(
+            username='other_user', password='password'
+        )
+        other_user.save()
+
+        self.thread = Thread.objects.create(
+            title='Test Thread',
+            content="Test content",
+            user=other_user,
+            channel=self.channel
+        )
+        self.thread.save()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_upvote_thread(self):
+        """Test that a user can downvote a thread"""
+
+        response = self.client.post(
+            reverse('downvote_thread', kwargs={'pk': 1})
+        )
+        downvote = Downvote.objects.get(user=self.user, thread=self.thread)
+
+        self.assertIsNotNone(downvote)
+        self.assertRedirects(
+            response, reverse('thread_detail', kwargs={'pk': 1})
         )
 
 
