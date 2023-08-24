@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Thread, Upvote, Downvote, Channel
 from django.views import View
-from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, \
-    CustomUserCreationForm
+from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -117,8 +116,8 @@ class ThreadAdd(View):
         }
         channel_name = request.GET.get('channel')
         if channel_name:
-            form.fields['channel'].initial = Channel.objects.get(
-                slug=channel_name)
+            form.fields['channel'].initial = get_object_or_404(
+                Channel, slug=channel_name)
 
         return render(
             request,
@@ -128,10 +127,20 @@ class ThreadAdd(View):
 
     def post(self, request):
         form = ThreadForm(request.POST, request.FILES)
-        if form.is_valid():
-            thread = form.save(commit=False)
-            thread.user = request.user
-            thread.save()
+
+        if form.is_valid() is False:
+            return render(
+                request,
+                "thread_add.html",
+                {
+                    'form': form
+                }
+            )
+
+        thread = form.save(commit=False)
+        thread.user = request.user
+        thread.save()
+        messages.success(request, 'Your thread was created successfully.')
         return redirect('index')
 
 
@@ -200,9 +209,7 @@ def profile(request):
 @login_required
 def view_profile(request, username):
     profile_user = get_object_or_404(User, username=username)
-    return render(
-        request, 'public_profile.html', {'public_user': profile_user}
-    )
+    return render(request, 'public_profile.html', {'public_user': profile_user})
 
 
 @method_decorator(login_required, name='dispatch')
@@ -227,14 +234,18 @@ class EditProfile(View):
             messages.success(request, 'Your profile was updated successfully.')
             return redirect('user_profile')
 
-        else:
-            redirect('edit_profile')
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return render(request, 'edit_profile.html', context)
 
 
 @method_decorator(login_required, name='dispatch')
 class UserThreads(View):
     def get(self, request):
-        threads = Thread.objects.filter(user=request.user)
+        threads = Thread.objects.filter(
+            user=request.user).order_by('-created_on')
         context = {
             'thread_list': threads
         }
@@ -282,6 +293,9 @@ class ThreadSearch(ListView):
 
     def get_queryset(self):
         keyword = self.request.GET.get('keyword')
+
+        if not keyword:
+            return Thread.objects.none()
 
         # Search for threads that contain the keyword
         # in the title OR in the content

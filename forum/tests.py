@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib.messages import get_messages
+
 
 from .models import Channel, Thread
 
@@ -204,6 +206,101 @@ class ThreadDetailViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, "404.html")
+
+
+class ThreadAddViewTest(TestCase):
+    """Test the add thread view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_form_shown_with_correct_template(self):
+        """
+        Test that the add thread form is shown using the correct template
+        and no channel
+        """
+
+        response = self.client.get(reverse('thread_add'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "thread_add.html")
+        self.assertIsNone(
+            response.context['form'].fields['channel'].initial
+        )
+
+    def test_form_has_channel_pre_filled(self):
+        """
+        Test that the add thread form has the channel prefilled
+        with the query param value
+        """
+
+        response = self.client.get(
+            reverse('thread_add') + '?channel=test-channel'
+        )
+
+        self.assertEqual(
+            response.context['form'].fields['channel'].initial,
+            self.channel
+        )
+
+    def test_returns_404_for_wrong_channel(self):
+        """
+        Test that the add thread form has the channel prefilled
+        with the query param value
+        """
+
+        response = self.client.get(
+            reverse('thread_add') + '?channel=fake-channel'
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_invalid_thread_is_not_created(self):
+        """Test thread validation works"""
+
+        response = self.client.post(
+            reverse('thread_add'),
+            {
+                'title': 'My thread',
+            }
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'content',
+                             ['This field is required.'])
+
+        with self.assertRaises(Thread.DoesNotExist):
+            Thread.objects.get(title='My thread')
+
+    def test_valid_thread_is_created(self):
+        """Test thread can be created"""
+
+        response = self.client.post(
+            reverse('thread_add'),
+            {
+                'title': 'My thread',
+                'content': 'Test Content',
+                'channel': self.channel.id,
+            }
+        )
+
+        self.assertRedirects(response, reverse('index'))
+        self.assertEqual(
+            Thread.objects.get(title='My thread').title,
+            'My thread'
+        )
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]),
+            'Your thread was created successfully.'
+        )
 
 
 class UnauthorizedViewsTest(TestCase):
