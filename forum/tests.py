@@ -436,6 +436,48 @@ class ThreadEditViewTest(TestCase):
         self.assertEqual(response.status_code, 403)
 
 
+class UserProfileViewTest(TestCase):
+    """Test the user profile view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_renders_correct_template(self):
+        """Test that the profile template is rendered correctly"""
+
+        response = self.client.get(reverse('user_profile'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'profile.html')
+        self.assertContains(response, self.user.username)
+
+
+class UserPublicProfileViewTest(TestCase):
+    """Test the user public profile view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_renders_correct_template(self):
+        """Test that the profile template is rendered correctly"""
+
+        response = self.client.get(
+            reverse('public_profile', kwargs={'username': self.user.username})
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'public_profile.html')
+        self.assertContains(response, self.user.username)
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
