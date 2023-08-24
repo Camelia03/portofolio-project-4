@@ -10,11 +10,13 @@ Return back to the [README.md](README.md) file.
   * [JavaScript Validator](#JS-Validator)
   * [Python Validator](#Python-Validator)
   * [Lighthouse](#Lighthouse)
+  * [Python-Unit testing](#Python-Unit-testing)
 
 * [MANUAL TESTING](#MANUAL-TESTING)
   * [Testing User Stories](#Testing-User-Stories)
 
-- - -
+
+
 
 ## AUTOMATED TESTING
 
@@ -202,7 +204,7 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 <details>
 <summary>tests.py</summary>
 
-![screenshot](docs/validation)
+![screenshot](docs/validation/py_validation_tests.png)
 </details>
 
 - - -
@@ -275,6 +277,19 @@ I used [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview
 | Order by | Mobile | ![screenshot](docs/lighthouse/) |
 | Channels | Desktop | ![screenshot](docs/lighthouse/lighthouse_channels_desktop.png) |
 | Channels | Mobile | ![screenshot](docs/lighthouse/lighthouse_channels_mobile.png) |
+
+
+
+### Python (Unit Testing)
+
+- To assess the functionality of the application, I utilized Django's built-in unit testing framework.
+
+For test execution, I used the following terminal command:
+
+`python3 manage.py test`
+
+![screenshot](docs/testing/automated_tests.png)
+
 
 
 
@@ -542,16 +557,17 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 
 - - -
 
-<details>As a registered user, I can select different sorting options so that I can customize the way I view the list of items and find the information I'm interested in more efficiently
-<summary>
+<details>
+<summary>As a registered user, I can select different sorting options so that I can customize the way I view the list of items and find the information I'm interested in more efficiently
 </summary>
 
 ![screenshot](docs/testing/order_by_desktop.jpg)
 </details>
 
-- - -
 
-Listed below are user stories that I couldn't successfully implement, designated as "Won't Have" in my MoSCoW prioritization.
+### MoSCoW prioritization
+
+Listed below are **user stories** that I couldn't successfully implement, designated as "Won't Have" in my ***MoSCoW*** prioritization.
 
 
 <details>
@@ -610,8 +626,8 @@ Listed below are user stories that I couldn't successfully implement, designated
 
 `Admin User`
 
-<details>As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines
-<summary>
+<details>
+<summary>As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines
 </summary>
 
 ![screenshot]N/A
@@ -645,3 +661,5 @@ Listed below are user stories that I couldn't successfully implement, designated
 </details>
 
 - - -
+
+
