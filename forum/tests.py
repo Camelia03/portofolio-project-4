@@ -612,6 +612,68 @@ class DownvoteThreadViewTest(TestCase):
         )
 
 
+class ThreadDeleteViewTest(TestCase):
+    """Test the delete thread functionality"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+        self.channel = create_test_channel()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+        for i in range(2):
+            thread = Thread.objects.create(
+                title=f'Test Thread ${i}',
+                content="Test content",
+                user=self.user,
+                channel=self.channel
+            )
+            thread.save()
+
+    def test_thread_can_be_deleted(self):
+        """Test that a thread can be deleted"""
+
+        response = self.client.post(reverse('thread_delete'), {'thread_id': 1})
+
+        threads = Thread.objects.all()
+
+        # Ensure only the second thread is left
+        self.assertEqual(threads[0].id, 2)
+        self.assertRedirects(response, reverse('user_threads'))
+
+    def test_returns_404_for_wrong_thread(self):
+        """Tests that 404 is returned for the wrong thread id"""
+
+        response = self.client.post(
+            reverse('thread_delete'), {'thread_id': 100}
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_user_can_only_delete_own_thread(self):
+        """Test that the a use can only delete his own threads"""
+
+        other_user = User.objects.create_user(
+            username='otheruser', password='password'
+        )
+        other_user.save()
+
+        other_thread = Thread.objects.create(
+            title='Test Thread',
+            content="Test content",
+            user=other_user,
+            channel=self.channel
+        )
+        other_thread.save()
+
+        response = self.client.post(
+            reverse('thread_delete'), {'thread_id': other_thread.id}
+        )
+
+        self.assertEqual(response.status_code, 403)
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
