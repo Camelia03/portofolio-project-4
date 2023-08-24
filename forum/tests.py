@@ -674,6 +674,22 @@ class ThreadDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 403)
 
 
+class EditProfileViewTest(TestCase):
+    """Test that the user can edit his profile"""
+
+    def setUp(self):
+        self.user = create_test_user()
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_renders_correct_template(self):
+        """Test that the edit thread form is rendered correctly"""
+
+        response = self.client.get(reverse('edit_profile'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'edit_profile.html')
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
