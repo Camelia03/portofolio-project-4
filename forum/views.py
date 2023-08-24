@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Thread, Upvote, Downvote, Channel
+from .models import Thread, Upvote, Downvote, Channel, Reply
 from django.views import View
 from .forms import ThreadForm, ReplyForm, UpdateProfileForm, UpdateUserForm, CustomUserCreationForm
 from django.urls import reverse_lazy
@@ -104,6 +104,22 @@ class ThreadDetail(View):
             reply.user = request.user
             reply.save()
         return redirect('thread_detail', pk=pk)
+
+
+@method_decorator(login_required, name='dispatch')
+class ReplyDelete(View):
+
+    def post(self, request):
+        reply_id = request.POST.get('reply_id')
+        thread_id = request.POST.get('thread_id')
+
+        reply = get_object_or_404(Reply, pk=reply_id)
+        if request.user.id == reply.user.id:
+            reply.delete()
+        else:
+            raise PermissionDenied()
+        messages.success(request,  'The reply has been deleted successfully.')
+        return redirect('thread_detail', pk=thread_id)
 
 
 @method_decorator(login_required, name='dispatch')

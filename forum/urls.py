@@ -33,4 +33,6 @@ urlpatterns = [
     path('user/threads', views.UserThreads.as_view(), name='user_threads'),
     path('user/threads/delete', views.ThreadDelete.as_view(),
          name='thread_delete'),
+
+    path('reply/delete', views.ReplyDelete.as_view(), name='reply_delete'),
 ]
