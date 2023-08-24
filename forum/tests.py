@@ -478,6 +478,66 @@ class UserPublicProfileViewTest(TestCase):
         self.assertContains(response, self.user.username)
 
 
+class UserThreadsViewTest(TestCase):
+    """Test the user threads view"""
+
+    @classmethod
+    def setUpTestData(self):
+        self.user = create_test_user()
+
+    def setUp(self):
+        self.client.login(username=self.user.username, password=user_password)
+
+    def test_renders_correct_template(self):
+        """Test that the profile template is rendered correctly"""
+
+        response = self.client.get(
+            reverse('user_threads')
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'user_threads.html')
+
+    def test_only_users_threads_are_shown(self):
+        """Test that only the logged in users thread are shown"""
+
+        other_user = User.objects.create_user(
+            username='other_user', password='password'
+        )
+        other_user.save()
+
+        channel = create_test_channel()
+
+        # Create 5 threads for the logged in user
+        for i in range(5):
+            thread = Thread.objects.create(
+                title='Test Thread ${i} Batch1',
+                content="Test content",
+                user=self.user,
+                channel=channel
+            )
+            thread.save()
+
+        # Create 3 threads for the other user
+        for i in range(3):
+            thread = Thread.objects.create(
+                title='Test Thread ${i} Batch1',
+                content="Test content",
+                user=other_user,
+                channel=channel
+            )
+            thread.save()
+
+        response = self.client.get(
+            reverse('user_threads')
+        )
+
+        self.assertQuerysetEqual(
+            response.context['thread_list'],
+            Thread.objects.filter(user=self.user).order_by('-created_on')
+        )
+
+
 class UnauthorizedViewsTest(TestCase):
     """Test that all views that require authentication redirect to login"""
 
