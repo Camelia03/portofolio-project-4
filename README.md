@@ -2,7 +2,7 @@
 
 
 
-![GoGlobal Website shown on a range of devices]()
+![GoGlobal Website shown on a range of devices](docs/am_i_responsive.jpg)
 
 GoGlobal stands as a Django-based social media application that enables users to register, generate threads, browse through other user's threads or profile, establish connections with fellow users expressing appreciation through upvotes or downvotes and replies, but also enables to manage their own threads.
 
@@ -479,18 +479,20 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Search**
 
-    - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords or phrases, and it expertly guides them to threads that match their interests. Even if no results are found for a specific keyword, the search bar ensures the user informed, allowing them to refine their search or explore other topics.
+    - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords or phrases, and it expertly guides them to threads that match their interests. 
 
     ![screenshot](docs/testing/search_results.png)
+
+    Even if no results are found for a specific keyword, the search bar ensures the user informed, allowing them to refine their search or explore other topics.
 
     ![screenshot](docs/testing/no_search_results.png)
 
 
 - **Logout**
 
-    - To conclude their session and log out, users can do so conveniently from the My Profile dropdown menu. When the logout button is clicked, a confirmation page appears, ensuring the user's intention. Upon confirming, clicking the confirmation button redirects users to the landing page, accompanied by a confirmation message that acknowledges their successful logout.
+    - To conclude their session and log out, users can do so conveniently from the My Profile dropdown menu.
 
-    ![screenshot]()
+    ![screenshot](docs/testing/logout.jpg)
 
 
 - **Admin Panel**
@@ -557,7 +559,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 This project relies on several core packages, with some key ones highlighted along with their functions:
 
  - django: A high-level Python web framework used for developing this application/site.
- - crispy-bootstrap4: A Bootstrap 4 template pack designed for django-crispy-forms.
+ - crispy-bootstrap5: A Bootstrap 5 template pack designed for django-crispy-forms.
  - dj3-cloudinary-storage: This package simplifies integration with Cloudinary by implementing Django Storage API.
  - django-allauth: An integrated set of Django applications designed for authentication, registration, account management, and third-party (social) account authentication.
  - django-crispy-forms: Offers a crispy filter and `{% crispy %}` tag for elegant and DRY (Don't Repeat Yourself) rendering of Django forms.
@@ -701,7 +703,6 @@ GitHub Issues served as an additional Agile tool. Within this context, I utilize
 
 ### MoSCoW Prioritization
 
-This technique proves valuable for my project helping me to prioritize product features.
 Before implementing my Epics, I broke them down into individual stories.
 By following this method, I could then apply MoSCoW prioritization and labels for my user stories directly in the Issues tab.
 
