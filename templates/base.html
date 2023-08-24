@@ -78,6 +78,11 @@
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="{% url 'user_profile' %}">My Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'user_threads' %}">My Threads</a></li>
+
+              {% if user.is_superuser %}
+              <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+              {% endif %}
+
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>
