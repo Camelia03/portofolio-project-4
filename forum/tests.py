@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 
-
 from .models import Channel, Downvote, Thread, Upvote
 
 user_password = 'password'
@@ -183,7 +182,6 @@ class ThreadDetailViewTest(TestCase):
 
     def setUp(self):
         self.client.login(username=self.user.username, password=user_password)
-        pass
 
     def test_thread_shown_with_correct_template(self):
         """Test that the thread is shown using the correct template"""
@@ -719,6 +717,76 @@ class UnauthorizedViewsTest(TestCase):
 
         response = self.client.get(
             reverse('thread_detail', kwargs={'pk': '1'})
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_thread_add_requires_login(self):
+        """Test that the thread add path redirects to login"""
+
+        response = self.client.get(
+            reverse('thread_add')
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_thread_search_requires_login(self):
+        """Test that the thread search path redirects to login"""
+
+        response = self.client.get(
+            reverse('thread_search')
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_thread_edit_requires_login(self):
+        """Test that the thread edit path redirects to login"""
+
+        response = self.client.get(
+            reverse('thread_edit', kwargs={'pk': 1})
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_user_profile_requires_login(self):
+        """Test that the user profile path redirects to login"""
+
+        response = self.client.get(
+            reverse('user_profile')
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_user_public_profile_requires_login(self):
+        """Test that the user public profile path redirects to login"""
+
+        response = self.client.get(
+            reverse('public_profile', kwargs={'username': 'test'})
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_user_threads_requires_login(self):
+        """Test that the user threads profile path redirects to login"""
+
+        response = self.client.get(
+            reverse('user_threads')
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse('login')))
+
+    def test_edit_profile_requires_login(self):
+        """Test that the user edit profile path redirects to login"""
+
+        response = self.client.get(
+            reverse('edit_profile')
         )
 
         self.assertEqual(response.status_code, 302)
