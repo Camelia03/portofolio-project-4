@@ -95,7 +95,7 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 |48 |Admin's action      |51|Should have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of threadss that may require deletion or improved site organization|
 |49 |Future features     |43|Won't have|As a registered user I can receive notifications for replies and upvotes/downvotes on my threads so that I stay updated on interactions and engagement with my content in the communication platform|
 |49 |Future features     |44|Won't have|As a registered user I can follow other users on the platform so that I stay updated on their activities, threads, and contributions|
-| 49 |Feature features            |45|Won't have|As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel|
+| 49 |Future features            |45|Won't have|As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel|
 | 49 |Future features            |46|Won't have|As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests|
 | 49 | Future features           |47|Won't have|As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members|
 

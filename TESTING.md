@@ -700,21 +700,21 @@ Feature | Expected Outcome | Testing Performed | Result | Pass/Fail |
 | `Home Page` |
 | View threads button | Redirects to the threads page | Click button | Redirected to the thread | Pass |
 | Add a new thread button | Redirects to the form to create new thread | Click button | Redirected to create a new thread | Pass |
-| Channels Link | Redirects to one of the channels page | Click button | Redirected to the channels page | Pass |
+| Channels Link | Redirects to one of the channels page | Click link | Redirected to the channels page | Pass |
 | Search button | User prompted to fill in a keyword | Click button | Redirected to the results page | Pass |
 | Order by dropdown button | User prompted to select an option | Click button | Redirected to the home page with ordered threads | Pass |
 | `My Profile Page` |
-| My Profile Link | Redirects to the (logged in) user's profile page | Click button | Redirected to the user's profile page | Pass |
+| My Profile Link | Redirects to the (logged in) user's profile page | Click link | Redirected to the user's profile page | Pass |
 | Edit Profile button | Redirects to edit form for user's profile page | Click button | Redirected to the edit user's profile page | Pass |
 | `My Threads Page` |
-| My Threads Link | Redirects to the (logged in) user's threads page | Click button | Redirected to the user's threads page | Pass |
+| My Threads Link | Redirects to the (logged in) user's threads page | Click link | Redirected to the user's threads page | Pass |
 | Read more button | Redirects to the (logged in) user's thread details page | Click button | Redirected to the user's thread details page | Pass |
 | Edit button | Redirects to the (logged in) user's existing thread form to edit page | Click button | Redirected to the user's existing thread form page | Pass |
 | Delete button | Modal popup to delete thread | Click button | Thread is deleted | Pass |
 | `Admin` |
 | Admin link | Redirects to the admin panel | Click link | Redirected to the admin panel | Pass |
 | `Channels Page` |
-| A channel Link | Redirects to the (selected) channel page | Click button | Redirected to (selected) channel page | Pass |
+| A channel Link | Redirects to the (selected) channel page | Click link | Redirected to (selected) channel page | Pass |
 | `Upvote button` |
 | Upvote button | Increases the number of upvotes | Click button | Increased the number of upvotes | Pass |
 | `Downvote button` |
