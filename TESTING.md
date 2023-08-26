@@ -75,6 +75,24 @@ The following pages were tested and no errors were detected on any of the pages:
 
 - - -
 
+[Thread details V3C HTML Validation]()
+<details>
+<summary>Validation Passed</summary>
+
+![screenshot](docs/validation/html_validation_threaddetails.png)
+</details>
+
+- - -
+
+[Edit your reply V3C HTML Validation]()
+<details>
+<summary>Validation Passed</summary>
+
+![screenshot](docs/validation/html_validation_editreply.png)
+</details>
+
+- - -
+
 [Channels V3C HTML Validation]()
 <details>
 <summary>Validation Passed</summary>
@@ -174,6 +192,14 @@ The testing of the `style.css` file resulted in the following outcome:
 ![screenshot](docs/validation/js_validation_userthreads.png)
 </details>
 
+- - -
+
+[JSHint Validation]()
+<details>
+<summary>thread_detail.js - Validation Passed</summary>
+
+![screenshot](docs/validation/js_validation_threaddetail.png)
+</details>
 
 ### Python Validator
 
@@ -253,7 +279,7 @@ I used [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview
 | Page | Size | Screenshot |
 | :----: | :----: | :-----------------------: |
 | Home | Desktop | ![screenshot](docs/lighthouse/lighthouse_home_desktop.png) |
-| Home | Mobile | ![screenshot](docs/lighthouse/) |
+| Home | Mobile | ![screenshot](docs/lighthouse/lighthouse_home_mobile.jpg) |
 | Sign Up | Desktop | ![screenshot](docs/lighthouse/lighthouse_signup_desktop.png) |
 | Sign Up | Mobile | ![screenshot](docs/lighthouse/lighthouse_signup_mobile.png) |
 | Sign In | Desktop | ![screenshot](docs/lighthouse/lighthouse_login_desktop.png) |
@@ -264,6 +290,8 @@ I used [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview
 | Add a Thread | Mobile | ![screenshot](docs/lighthouse/lighthouse_addnewthread_mobile.png) |
 | Thread Details | Desktop | ![screenshot](docs/lighthouse/lighthouse_threaddetails_desktop.png) |
 | Thread Details | Mobile | ![screenshot](docs/lighthouse/lighthouse_threaddetails_mobile.png) |
+| Edit your reply | Desktop | ![screenshot](docs/lighthouse/lighthouse_edityourreply_desktop.png) |
+| Edit your reply | Mobile | ![screenshot](docs/lighthouse/lighthouse_edityourreply_mobile.png) |
 | My Profile | Desktop | ![screenshot](docs/lighthouse/lighthouse_myprofile_desktop.png) |
 | My Profile | Mobile | ![screenshot](docs/lighthouse/lighthouse_myprofile_mobile.png) |
 | Edit Profile | Desktop | ![screenshot](docs/lighthouse/lighthouse_editprofile_desktop.png) |
@@ -277,7 +305,7 @@ I used [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview
 | Search | Desktop | ![screenshot](docs/lighthouse/lighthouse_search_desktop.png) |
 | Search | Mobile | ![screenshot](docs/lighthouse/lighthouse_search_mobile.png) |
 | Order by | Desktop | ![screenshot](docs/lighthouse/lighthouse_orderby_desktop.png) |
-| Order by | Mobile | ![screenshot](docs/lighthouse/) |
+| Order by | Mobile | ![screenshot](docs/lighthouse/lighthouse_orderby_mobile.jpg) |
 | Channels | Desktop | ![screenshot](docs/lighthouse/lighthouse_channels_desktop.png) |
 | Channels | Mobile | ![screenshot](docs/lighthouse/lighthouse_channels_mobile.png) |
 
@@ -339,7 +367,7 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 <summary>As a registered user I can log out of my account so that I can end my session on my current device
 </summary>
 
-![screenshot](docs/lighthouse/)
+![screenshot](docs/testing/logout.jpg)
 </details>
 
 - - -
@@ -420,7 +448,7 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 <summary>As a registered user I can delete my threads so that I remove content that I no longer wish to be published
 </summary>
 
-![screenshot](docs/testing/my_threads_desktop.png)
+![screenshot](docs/testing/delete_thread.png)
 </details>
 
 - - -
@@ -519,7 +547,16 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 <summary>As a registered user I can delete my replies so that I can remove what I no longer wish to be published
 </summary>
 
-![screenshot](docs/)
+![screenshot](docs/testing/delete_reply.png)
+</details>
+
+- - -
+
+<details>
+<summary>As a registered user I can edit my replies so that I can change one of my previous replies
+</summary>
+
+![screenshot](docs/testing/edit_reply.png)
 </details>
 
 - - -
@@ -529,15 +566,6 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 </summary>
 
 ![screenshot](docs/testing/home_page_desktop.png)
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can respond to replies on the communication platform so that I can engage in discussions, share my perspective, and interact with others in the community
-</summary>
-
-![screenshot](docs/testing/)
 </details>
 
 - - -
@@ -567,64 +595,6 @@ Below are user stories I've executed, accompanied by screenshots as evidence.
 ![screenshot](docs/testing/order_by_desktop.jpg)
 </details>
 
-
-### MoSCoW prioritization
-
-Listed below are **user stories** that I couldn't successfully implement, designated as "Won't Have" in my ***MoSCoW*** prioritization.
-
-
-<details>
-<summary>As a registered user I can use an emoji button when replying on a thread so that I can describe even better what I want to say
-</summary>
-
-![screenshot]N/A
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can receive notifications for replies and upvotes/downvotes on my threads so that I stay updated on interactions and engagement with my content in the communication platform
-</summary>
-
-![screenshot]N/A
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can follow other users on the platform so that I stay updated on their activities, threads, and contributions
-</summary>
-
-![screenshot]N/A
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel
-</summary>
-
-![screenshot]N/A
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests
-</summary>
-
-![screenshot]N/A
-</details>
-
-- - -
-
-<details>
-<summary>As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members
-</summary>
-
-![screenshot]N/A
-</details>
-
 - - -
 
 `Admin User`
@@ -633,7 +603,9 @@ Listed below are **user stories** that I couldn't successfully implement, design
 <summary>As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines
 </summary>
 
-![screenshot]N/A
+![screenshot](docs/testing/admin_delete_threads.jpg)
+![screenshot](docs/testing/admin_user_account_suspension.png)
+
 </details>
 
 - - -
@@ -642,7 +614,7 @@ Listed below are **user stories** that I couldn't successfully implement, design
 <summary>As an admin user I can delete other user's threads so that I can update the site's content
 </summary>
 
-![screenshot]N/A
+![screenshot](docs/testing/admin_delete_threads.jpg)
 </details>
 
 - - -
@@ -651,19 +623,61 @@ Listed below are **user stories** that I couldn't successfully implement, design
 <summary>As an admin user I can create a new channel within the communication platform so that users can have a dedicated space to discuss project-related updates, share resources, and collaborate effectively
 </summary>
 
-![screenshot]N/A
+![screenshot](docs/testing/admin_create_channels.png)
 </details>
 
 - - -
 
 <details>
-<summary>As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of posts that may require deletion or improved site organization
+<summary>As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of threads that may require deletion or improved site organization
 </summary>
 
-![screenshot]N/A
+![screenshot](docs/testing/nav_expanded_dropdown_desktop.png)
+![screenshot](docs/testing/admin_panel.png)
+
 </details>
 
 - - -
+
+### MoSCoW prioritization
+
+Listed below are **user stories** that I couldn't successfully implement, designated as "Won't Have" in my ***MoSCoW*** prioritization.
+
+
+As a registered user I can use an emoji button when replying on a thread so that I can describe even better what I want to say
+
+
+- - -
+
+As a registered user I can respond to replies on the communication platform so that I can engage in discussions, share my perspective, and interact with others in the community
+
+- - -
+
+As a registered user I can receive notifications for replies and upvotes/downvotes on my threads so that I stay updated on interactions and engagement with my content in the communication platform
+
+
+- - -
+
+As a registered user I can follow other users on the platform so that I stay updated on their activities, threads, and contributions
+
+
+- - -
+
+As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel
+
+
+- - -
+
+As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests
+
+- - -
+
+As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members
+
+
+- - -
+
+
 
 
 
@@ -696,7 +710,9 @@ Feature | Expected Outcome | Testing Performed | Result | Pass/Fail |
 | My Threads Link | Redirects to the (logged in) user's threads page | Click button | Redirected to the user's threads page | Pass |
 | Read more button | Redirects to the (logged in) user's thread details page | Click button | Redirected to the user's thread details page | Pass |
 | Edit button | Redirects to the (logged in) user's existing thread form to edit page | Click button | Redirected to the user's existing thread form page | Pass |
-| Delete button | Modal popup to delete thread | Click button | Redirected to the (logged in) user's thread page | Pass |
+| Delete button | Modal popup to delete thread | Click button | Thread is deleted | Pass |
+| `Admin` |
+| Admin link | Redirects to the admin panel | Click link | Redirected to the admin panel | Pass |
 | `Channels Page` |
 | A channel Link | Redirects to the (selected) channel page | Click button | Redirected to (selected) channel page | Pass |
 | `Upvote button` |
@@ -705,6 +721,8 @@ Feature | Expected Outcome | Testing Performed | Result | Pass/Fail |
 | Dowvote button | Decreases the number of upvotes | Click button | Decreased the number of upvotes | Pass |
 | `Replies` |
 | Submit button | Submits the content wrote as a reply | Click button | Submitted the content wrote as a reply | Pass |
+| Edit button | Redirects to the edit your reply page | Click button | Redirected to the edit your reply page | Pass |
+| Delete button | Modal popup to delete reply | Click button | Reply is deleted | Pass |
 | `Other user's Profile Page` |
 | Other user's Profile Link | Redirects to the (selected) user's profile page | Click button | Redirected to the (selected) user's profile page | Pass |
 | `404 Page` |
@@ -737,5 +755,7 @@ Feature | Expected Outcome | Testing Performed | Result | Pass/Fail |
     - Fixed by setting a success message and showing it in the template using the Django messages feature
 
 - - -
+`Unfixed bugs`:
+    - Show dates displayed in threads in the user's time zone
 
 Back to [README.md](README.md)
