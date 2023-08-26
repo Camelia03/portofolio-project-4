@@ -22,7 +22,7 @@ GoGlobal stands as a Django-based social media application that enables users to
 
 * [Technologies Used](#Technologies-Used)
   * [Languages Used](#Languages-Used)
-  * [Frameworks, Libraries & Programs Used](#Frameworks,-Libraries-&-Programs-Used)
+  * [Frameworks, Libraries & Programs Used](#Frameworks-Libraries--Programs-Used)
 
 * [Database Design](#Database-Design)
   * [Relationship Diagram](#Relationship-Diagram)
@@ -89,7 +89,6 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 |23 |Replies            |52|Should have|As a registered user I can edit my replies so that I can change one of my previous replies.|
 |23 |Replies             |5|Won't have|As a registered user I can use an emoji button when replying on a thread so that I can describe even better what I want to say   |
 | 3 |Channels            |34|Could have|As a registered user I can utilize existing channels on the communication platform to read, post threads, and engage in conversations so that I can stay informed about diverse topics and contribute my insights and questions|
-| 3 | Admin's action           |51|Should have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of threadss that may require deletion or improved site organization|
 |48 |Admin's action      |7|Could have|As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines|
 |48 |Admin's action      |8|Could have|As an admin user I can delete other user's threads so that I can update the site's content                                  |
 |48 |Admin's action      |33|Could have|As an admin user I can create a new channel within the communication platform so that users can have a dedicated space to discuss project-related updates, share resources, and collaborate effectively|
@@ -564,7 +563,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
  - JavaScript is leveraged for modifying the DOM across different pages.
  - Python plays a pivotal role in configuring the site's fundamental functionalities, including models and views.
 
-### Frameworks,-Libraries-&-Programs-Used:
+### Frameworks, Libraries & Programs-Used:
 - Python Modules/Packages-Used:
 
 This project relies on several core packages, with some key ones highlighted along with their functions:
@@ -610,8 +609,8 @@ To create the databse diagram, I used [PyCharm](https://www.jetbrains.com/pychar
 
 The following are the models created for GoGlobal.
 
-- **Allauth User Model**
-    - The User model was built using [Django's Allauth library](https://django-allauth.readthedocs.io/en/latest/overview.html)
+- **Django User Model**
+    - The User model was built using the `Default Django User`
     - When a user is created, they're automatically assigned a profile through the Profile model.
 
 - **Profile**
@@ -822,8 +821,8 @@ Don't forget to install all the packages specified in the requirements file. Thi
 
 
 
-### Credits
-## Code
+## Credits
+### Code
 While working on the project, I frequently referred to the following websites for troubleshooting:  
 
 - [W3 Schools](https://www.w3schools.com)
@@ -839,9 +838,9 @@ While working on the project, I frequently referred to the following websites fo
 
 - [Django Docs](https://docs.djangoproject.com/en/4.1/topics/auth/default/) - for only logged in users can access main site
 
-- [Django Docs](https://learndjango.com/tutorials/django-password-reset-tutorial) - for password reset tutorial
+- [Learn Django](https://learndjango.com/tutorials/django-password-reset-tutorial) - for password reset tutorial
 
-- [Django Docs](https://learndjango.com/tutorials/django-login-and-logout-tutorial) - for the login and logout tutorial
+- [Learn Django](https://learndjango.com/tutorials/django-login-and-logout-tutorial) - for the login and logout tutorial
 
 - [Dev Community](https://dev.to/earthcomfy/django-user-profile-3hik) - for user profile
 
@@ -849,7 +848,7 @@ While working on the project, I frequently referred to the following websites fo
 
 - [Abstractapi](https://www.abstractapi.com/guides/django-send-email#:~:text=In%20order%20to%20send%20emails,and%20generate%20an%20app%20password) - how to send email with Django
 
-## Media
+### Media
 
 All media files on the webiste, except one, were taken from [Pixabay](https://pixabay.com/)
 
@@ -860,7 +859,7 @@ To create a favicon I used [Favicon](https://favicon.io/)
 Throughout the site, I used icons, such as the social media icons in the footer, upvote and downvote button, replies and channels from [Font Awesome](https://fontawesome.com).
 
 
-## Acknowledgements
+### Acknowledgements
 
 - I extend my gratitude to my mentor Jubril Akolade, whose feedback, advice, guidance, and support significantly enriched this project and the preceding three.
 - The Code Institute Slack community deserves recognition for providing unwavering encouragement during moments of self-doubt and imposter syndrome.
