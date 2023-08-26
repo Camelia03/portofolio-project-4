@@ -10,7 +10,7 @@ GoGlobal stands as a Django-based social media application that enables users to
 
 ## CONTENTS
 
-* [User Experience (UX)](#User-Experience-(UX))
+* [User Experience (UX)](#User-Experience-UX)
   * [Initial Project](#Initial-Project)
   * [User Stories](#User-Stories)
 
@@ -31,11 +31,11 @@ GoGlobal stands as a Django-based social media application that enables users to
 * [Agile Development Process](#Agile-Development-Process)
   * [GitHub Projects](#GitHub-Projects)
   * [GitHub Issues](#GitHub-Issues)
-  * [Moscow Prioritization](Moscow-Prioritization)
+  * [Moscow Prioritization](#Moscow-Prioritization)
 
 * [Testing](#Testing)
 
-* [Deployment & Development](#Deployment-&-Development)
+* [Deployment & Development](#Deployment--Development)
     * [Deploy on Heroku](#Deploy-on-Heroku)
      * [Database Setup](#Database-Setup)
     * [Development](#Development)
@@ -48,7 +48,7 @@ GoGlobal stands as a Django-based social media application that enables users to
 
 
 
-## User Experience (UX)
+## User Experience UX
 
 ### Initial-Project
 
@@ -78,27 +78,29 @@ Starting off as a blogging platform, GoGLobal's main goal shifted towards creati
 |25 |Threads            |10|Must have|As a registered user I can see what time and date a thread was created so that I consider the whole context depending on its current age|
 |25 |Threads            |39|Must have|As a registered user I can click on the cancel button while editing a thread so that I can discard the changes I've made and revert to the original thread content|
 |25 |Threads            |41|Must have|As a registered user I can click on the cancel button while adding a new thread so that I can abandon the thread creation process and prevent the new thread from being added if I decide not to proceed with it|
+|25 |Threads     |29|Must have|As a registered user I can search for other user's threads so that I can discover relevant content                               |
+|25 |Threads     |30|Must have|As a registered user, I can select different sorting options so that I can customize the way I view the list of items and find the information I'm interested in more efficiently|
 |42 |Upvote and downvote|11|Must have|As a registered user I can upvote other user's threads so that I let them know I enjoyed their thread                             |
 |42 |Upvote and downvote|32|Should have|As a registered user I can downvote a thread so that I can express dissenting opinions and influence content assessment         |
 |42 |Upvote and downvote|37|Should have|As a registered user I can view the total number of upvotes on a thread so that I can gauge its popularity and engagement       |
 |23 |Replies            |13|Must have|As a registered user I can reply on other user's threads so that I engage with the user and open a conversation                   |
 |23 |Replies            |12|Must have|As a registered user I can delete my replies so that I can remove what I no longer wish to be published                           |
 |23 |Replies            |4|Should have|As a registered user I can see the number of replies on a thread so that I know the impact of my thread on other people          |
-|23 |Replies            |9|Won't have|As a registered user I can respond to replies on the communication platform so that I can engage in discussions, share my perspective, and interact with others in the community|
+|23 |Replies            |52|Should have|As a registered user I can edit my replies so that I can change one of my previous replies.|
+|23 |Replies             |5|Won't have|As a registered user I can use an emoji button when replying on a thread so that I can describe even better what I want to say   |
 | 3 |Channels            |34|Could have|As a registered user I can utilize existing channels on the communication platform to read, post threads, and engage in conversations so that I can stay informed about diverse topics and contribute my insights and questions|
+| 3 | Admin's action           |51|Should have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of threadss that may require deletion or improved site organization|
 |48 |Admin's action      |7|Could have|As an admin user I can suspend/delete the accounts of users who break the rules of the site so that I can prevent users from constantly violating the guidelines|
 |48 |Admin's action      |8|Could have|As an admin user I can delete other user's threads so that I can update the site's content                                  |
 |48 |Admin's action      |33|Could have|As an admin user I can create a new channel within the communication platform so that users can have a dedicated space to discuss project-related updates, share resources, and collaborate effectively|
-|49 |Functionalities     |29|Must have|As a registered user I can search for other user's threads so that I can discover relevant content                               |
-|49 |Functionalities     |30|Must have|As a registered user, I can select different sorting options so that I can customize the way I view the list of items and find the information I'm interested in more efficiently|
-|23 |Replies             |5|Won't have|As a registered user I can use an emoji button when replying on a thread so that I can describe even better what I want to say   |
-|49 |Functionalities     |43|Won't have|As a registered user I can receive notifications for replies and upvotes/downvotes on my threads so that I stay updated on interactions and engagement with my content in the communication platform|
-|49 |Functionalities     |44|Won't have|As a registered user I can follow other users on the platform so that I stay updated on their activities, threads, and contributions|
-| 3 |Channels            |45|Won't have|As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel|
-| 3 |Channels            |46|Won't have|As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests|
-| 3 | Channels           |47|Won't have|As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members|
-| 3 | Admin's action           |51|Won't have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of posts that may require deletion or improved site organization|
+|48 |Admin's action      |51|Should have|As an admin user I can access a dedicated page exclusively meant for administrators so that I can review a list of threadss that may require deletion or improved site organization|
+|49 |Future features     |43|Won't have|As a registered user I can receive notifications for replies and upvotes/downvotes on my threads so that I stay updated on interactions and engagement with my content in the communication platform|
+|49 |Future features     |44|Won't have|As a registered user I can follow other users on the platform so that I stay updated on their activities, threads, and contributions|
+| 49 |Feature features            |45|Won't have|As a registered user I can join channels as a member so that I'll get access to discussions, information, and collaboration opportunities within the specific channel|
+| 49 |Future features            |46|Won't have|As a registered user I can create personalized channels on the platform so that I can initiate discussions, share content, and connect with others who share similar interests|
+| 49 | Future features           |47|Won't have|As a registered user I can be assigned roles within a channel so that I can moderate the channel's activities, ensuring smooth discussions, content curation, and maintaining a positive environment for all members|
 
+## Design
 
 ### Color Scheme
 
@@ -217,6 +219,18 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
+### Edit your Reply Page
+
+<details>
+<summary>View Edit reply Page</summary>
+
+#### Desktop
+![screenshot](docs/wireframes/Edit%20your%20reply%20Desktop%20version.png)
+
+#### Mobile
+![screenshot](docs/wireframes/Edit%20your%20reply%20mobile%20version.png)
+
+</details>
 
 ### My threads Page
 
@@ -316,7 +330,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Navbar expanded dropdown menu**
 
-    ![screenshot](docs/testing/nav_expanded_dropdown_mobile.png)
+    ![screenshot](docs/testing/nav_expanded_dropdown_desktop.png)
 
 
 - **Landing or Log In Page**
@@ -427,7 +441,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Read more/ Thread Details**
 
-    - The "Read More" button directs users to the thread details page, offering an immersive experience. Here, users encounter the entire post, enriched with context. The channel to which it belongs, its title, creation timestamp, author's name, and profile picture contribute to the comprehensive view. Additionally, the thread's associated image, content, but also the counted upvotes, and downvotes are prominently displayed.
+    - The "Read More" button directs users to the thread details page, offering an immersive experience. Here, users encounter the entire thread, enriched with context. The channel to which it belongs, its title, creation timestamp, author's name, and profile picture contribute to the comprehensive view. Additionally, the thread's associated image, content, but also the counted upvotes, and downvotes are prominently displayed.
     - To encourage engagement, a dedicated section enables users to leave a reply, fostering dynamic discussions.Following this, a "Replies" section presents the users's names and their replies, creating a comprehensive space for discussions. 
 
  - **Read more/ Thread Details Page**
@@ -446,7 +460,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Delete Thread**
 
-    - Users can delete their threads by clicking the delete button. A confirmation window appears to prevent accidental deletions. If users change their minds, a button takes them back to the post. For thread deletions, a successful action message is displayed after the process is completed.
+    - Users can delete their threads by clicking the delete button. A confirmation window appears to prevent accidental deletions. If users change their minds, a button takes them back to the thread. For thread deletions, a successful action message is displayed after the process is completed.
 
     ![screenshot](docs/testing/delete_thread.png)
 
@@ -459,16 +473,16 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Edit reply**
 
-    - Reply authors can edit their replies. Clicking the edit icon takes them to a page where they can make changes and save. If they edit by mistake, a button brings them back to the post.
+    - Reply authors can edit their replies. Clicking the edit icon takes them to a page where they can make changes and save. If they edit by mistake, a button brings them back to the thread.
 
-    ![screenshot]()
+    ![screenshot](docs/testing/edit_reply.png)
 
 
 - **Delete reply**
 
     - The replies can be deleted by both the reply's author or the thread's author using the delete icon. To prevent accidental deletions, a confirmation page appears. Users can return to the thread they replied on using a button if they change their mind about deleting the reply.
 
-    ![screenshot]()
+    ![screenshot](docs/testing/delete_reply.png)
 
 - **Other user's Profile**
 
@@ -497,14 +511,14 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Admin Panel**
 
-    - The admin panel is exclusively accessible via Django's backend by adding "/admin" to the end of the website's URL. Admins hold the authority to determine whether a post should be deleted.
+    - The admin panel is exclusively accessible via Django's backend by adding "/admin" to the end of the website's URL. Admins hold the authority to determine whether a thread should be deleted.
 
-    ![screenshot]()
+    ![screenshot](docs/testing/admin_delete_threads.jpg)
 
 
 - **Error Pages**
 
-    - If a user reaches a page that doesn't exist or isn't allowed (like a regular user trying to access the admin panel or deleting others' posts), they'll see an error page. It has a button to take them back to home page.
+    - If a user reaches a page that doesn't exist or isn't allowed (like a regular user trying to access the admin panel or deleting others' threads), they'll see an error page. It has a button to take them back to home page.
 
     ![screenshot](docs/testing/error_401.png)
 
@@ -520,9 +534,6 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - Reply to a reply
     - Registered users will have the ability to respond to replies on the communication platform. This empowers them to actively participate in discussions, express their viewpoints, and engage with others within the community.
-
-- Delete threads and replies as an admin
-    - Admin will have the authority to delete threads and replies authored by other users. This capability enables them to manage and update the site's content effectively.
 
 - Emoji button
     - Registered users will be able to utilize an emoji button while replying to threads. This allows them to convey their thoughts more vividly and accurately.
@@ -624,7 +635,7 @@ The following are the models created for GoGlobal.
     | created_on | DateTimeField | |
     | image | CloudinaryField | |
     | edited_on | DateTimeField | |
-    | channels | ForeignKey | FK to **Channel** model |
+    | channel | ForeignKey | FK to **Channel** model |
 
 
 - **Reply**
