@@ -6,8 +6,10 @@
 {% load crispy_forms_tags %}
 
 <div class="container-lg py-4">
+    <!-- Form messages -->
     {% include 'snippets/app_message.html' with messages=messages %}
 
+    <!-- Thread contents -->
     <div class="card mb-3">
         <div class="card-body">
             <div class="thread-card-channel">

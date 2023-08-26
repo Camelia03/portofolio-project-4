@@ -5,8 +5,10 @@
 {% block content %}
 <div class="container-lg py-4">
     <h1>My Threads</h1>
+    <!-- Form messages -->
     {% include 'snippets/app_message.html' with messages=messages %}
 
+    <!-- List of threads -->
     {% for thread in thread_list %}
     <div class="card mb-3">
         <div class="row g-0">
@@ -45,7 +47,7 @@
     <p>You don't have any threads. Go <a href="{% url 'thread_add' %}">here</a> to create a thread.</p>
 
     {% endfor %}
-    <!-- Modal -->
+    <!-- Delete thread modal -->
     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">

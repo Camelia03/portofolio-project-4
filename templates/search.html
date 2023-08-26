@@ -8,6 +8,7 @@
 
     <p>{{ paginator.count }} Results with the keyword: {{keyword}}</p>
 
+    <!-- List of threads -->
     {% for thread in threads %}
 
     {% include 'snippets/thread_card.html' with thread=thread %}
