@@ -6,9 +6,11 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('signup', views.SignUpView.as_view(), name='signup'),
 
+    # Channels
     path('channels/<str:name>', views.Index.as_view(),
          name='channel_threads'),
 
+    # Threads
     path(
         'thread/<int:pk>/', views.ThreadDetail.as_view(), name="thread_detail"
     ),
@@ -23,6 +25,7 @@ urlpatterns = [
         name='downvote_thread'
     ),
 
+    # Profile
     path('user/profile', views.profile, name='user_profile'),
     path(
         'user/profile/edit', views.EditProfile.as_view(), name='edit_profile'
@@ -30,10 +33,12 @@ urlpatterns = [
     path('user/<str:username>/profile',
          views.view_profile, name='public_profile'),
 
+    # User threads
     path('user/threads', views.UserThreads.as_view(), name='user_threads'),
     path('user/threads/delete', views.ThreadDelete.as_view(),
          name='thread_delete'),
 
+    # Replies
     path('reply/delete', views.ReplyDelete.as_view(), name='reply_delete'),
     path('reply/<int:pk>/edit', views.ReplyEdit.as_view(), name='reply_edit'),
 ]
